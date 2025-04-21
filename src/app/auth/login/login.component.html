@@ -1,0 +1,39 @@
+<div class="w-full min-h-screen flex justify-center items-center">
+    <div class=" shadow-2xl rounded-md p-5 w-[400px] bg-white">
+        <p class="text-lg font-bold text-center">Sign In</p>
+        <p class="text-md font-light text-center text-gray-400">Welcome back to Affinity Appliance!</p>
+        <form (ngSubmit)="OnSubmit()" [formGroup]="LoginForm">
+            <div class="grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 gap-3 mt-4">
+                <p-floatlabel variant="in">
+                    <input pInputText id="email" autocomplete="off" formControlName="email" [class]="IsFormSubmitted && !LoginForm.controls['email'].value ? 'ng-dirty ng-invalid' : ''" />
+                    <label for="email">Email</label>
+                </p-floatlabel>
+                <p-floatlabel variant="in">
+                    <p-password id="password" autocomplete="off" toggleMask="true" feedback="false" formControlName="password" [class]="IsFormSubmitted && !LoginForm.controls['password'].value ? 'ng-dirty ng-invalid' : ''" />
+                    <label for="email">Password</label>
+                </p-floatlabel>
+                <div class="flex justify-between items-end">
+                    <div class="flex items-end gap-1">
+                        <p-checkbox [binary]="true" value="Remeber me" size="small" id="remember" />
+                        <label for="remember" class="text-xs font-light">Remember me</label>
+                    </div>
+                    <a class="text-xs font-light text-right cursor-pointer text-blue-700">Forgot Password?</a>
+                </div>
+                <p-button label="Login" type="submit" size="small" severity="info" />
+            </div>
+        </form>
+        <p-divider align="center" type="solid">
+            <b>OR</b>
+        </p-divider>
+        <div class="flex justify-center">
+            <p-buttongroup>
+                <p-button label="Loign with Facbook" icon="pi pi-facebook" size="small" severity="info" outlined="true" />
+                <p-button label="Login with Google" icon="pi pi-google" size="small" severity="danger" outlined="true" />
+            </p-buttongroup>
+        </div>
+        <div class="mt-2 text-center">
+            <a class="text-md font-light">Don't have an account? <span class="text-blue-700 cursor-pointer">Sign
+                    Up</span></a>
+        </div>
+    </div>
+</div>

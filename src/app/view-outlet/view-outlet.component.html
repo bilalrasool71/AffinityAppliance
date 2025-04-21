@@ -1,1 +1,22 @@
-<p>view-outlet works!</p>
+<p-menubar [model]="items">
+    <ng-template #start>
+        <div class="bg-[gainsboro] flex items-center gap-2 p-2 rounded-lg">
+            <h3 class="text-lg font-black">Affinity Appliance</h3>
+
+        </div>
+    </ng-template>
+    <ng-template #item let-item let-root="root">
+        <a pRipple class="flex items-center p-menubar-item-link">
+            <i [class]="item.icon"></i>
+            <span>{{ item.label }}</span>
+        </a>
+    </ng-template>
+    <ng-template #end>
+        <div class="flex items-center gap-2">
+            <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
+        </div>
+    </ng-template>
+</p-menubar>
+<div class="px-4 py-1">
+    <router-outlet></router-outlet>
+</div>
