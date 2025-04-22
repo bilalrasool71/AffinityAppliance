@@ -12,6 +12,10 @@ export const routes: Routes = [
             {
                 path: 'create-quotation',
                 loadComponent: () => import('./components/create-quotation/create-quotation.component').then(m => m.CreateQuotationComponent),
+            },
+            {
+                path: 'add-user',
+                loadComponent: () => import('./components/add-user/add-user.component').then(m => m.AddUserComponent),
             }
         ]
     },

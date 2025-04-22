@@ -1,0 +1,118 @@
+
+<div class="flex  w-full py-2 ps-7 bg-green-400 rounded">
+  <h2 class="text-xl font-semibold text-white">New User</h2>
+</div>
+
+<div class="p-6 bg-white rounded shadow w-full">
+ 
+    <form (ngSubmit)="OnSubmit()" [formGroup]="userForm">
+      <div class="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-8 mt-1">
+        
+        <p-floatlabel variant="on">
+          <input pInputText id="firstName" formControlName="firstName" autocomplete="off"
+                 [class]="IsFormSubmitted && !userForm.controls['firstName'].value ? 'ng-dirty ng-invalid' : ''" />
+          <label for="firstName">First Name <span class="text-red-500">*</span></label>
+        </p-floatlabel>
+  
+        <p-floatlabel variant="on">
+          <input pInputText id="lastName" formControlName="lastName" autocomplete="off"
+                 [class]="IsFormSubmitted && !userForm.controls['lastName'].value ? 'ng-dirty ng-invalid' : ''" />
+          <label for="lastName">Last Name <span class="text-red-500">*</span></label>
+        </p-floatlabel>
+  
+        <p-floatlabel variant="on">
+          <input pInputText id="email" formControlName="email" autocomplete="off"
+                 [class]="IsFormSubmitted && !userForm.controls['email'].value ? 'ng-dirty ng-invalid' : ''" />
+          <label for="email">Email <span class="text-red-500">*</span></label>
+        </p-floatlabel>
+
+        <p-floatlabel variant="on">
+            <p-select
+              inputId="role"
+              formControlName="role"
+              [options]="roles"
+              placeholder="Super Admin"
+              class="w-full border"
+              [class]="IsFormSubmitted && !userForm.controls['role'].value ? 'ng-dirty ng-invalid' : ''">
+            </p-select>
+            <label for="role">Role <span class="text-red-500">*</span></label>
+          </p-floatlabel>
+          
+  
+        <p-floatlabel variant="on">
+          <p-select inputId="state" formControlName="state"
+                      [options]="states" placeholder="Select State"
+                      class="w-full" [class]="IsFormSubmitted && userForm.controls['state'].invalid ? 'ng-dirty ng-invalid' : ''">
+          </p-select>
+          <label for="state">State</label>
+        </p-floatlabel>
+  
+        <p-floatlabel variant="on">
+          <p-select inputId="timeZone" formControlName="timeZone"
+                      [options]="timeZones" placeholder="Select Time Zone"
+                      class="w-full" [class]="IsFormSubmitted && userForm.controls['timeZone'].invalid ? 'ng-dirty ng-invalid' : ''">
+          </p-select>
+          <label for="timeZone">Time Zone</label>
+        </p-floatlabel>
+  
+        <p-floatlabel variant="on">
+          <input pInputText type="number" id="mobile" formControlName="mobile" autocomplete="off"
+          class="w-full" [class]="IsFormSubmitted && userForm.controls['mobile'].invalid ? 'ng-dirty ng-invalid' : ''">
+          <label for="mobile">Mobile Number <span class="text-red-500">*</span></label>
+        </p-floatlabel>
+  
+        <!-- <p-floatlabel variant="on">
+          <input pInputText type="password" id="password" formControlName="password" autocomplete="off"/>
+          <label for="password">Password <span class="text-red-500">*</span></label>
+        </p-floatlabel> -->
+  
+        <p-floatlabel variant="on">
+          <p-password id="password" autocomplete="off" toggleMask="true" feedback="false" formControlName="password" 
+          [class]="IsFormSubmitted && !userForm.controls['password'].value ? 'ng-dirty ng-invalid' : ''" />
+          <label for="email">Password</label>
+      </p-floatlabel>
+
+
+
+        <p-floatlabel variant="on">
+          <p-select inputId="userType" formControlName="userType"
+                      [options]="userTypes" placeholder="Select User Type"
+                      class="w-full">
+          </p-select>
+          <label for="userType">User Type</label>
+        </p-floatlabel>
+  
+        <div class="field">
+            <label for="color" class="block">Color</label>
+            
+            <p-colorPicker
+            inputId="color"
+            formControlName="color"
+            [format]="'hex'"
+            [appendTo]="'body'"
+            styleClass="w-full">
+          </p-colorPicker>
+
+          </div>
+          
+      </div>
+  
+      <div class="mt-6">
+        <p-editor
+          formControlName="emailFooter"
+          styleClass="w-full"
+          [style]="{ height: '200px' }"
+          placeholder="Write email footer here...">
+        </p-editor>
+      </div>
+      <div class="mt-2">
+        <p-checkbox inputId="sendEmail" name="sendEmail" value="sendEmail" formControlName="sendEmail" />
+        <label for="sendEmail" class="ml-2"> Send Email </label>
+    </div>
+      <div class="card flex justify-end flex-wrap gap-4 mt-1">
+        <p-button type="submit" label="Save User"  styleClass="m-0" />
+      </div>
+  
+    </form>
+  </div>
+  
