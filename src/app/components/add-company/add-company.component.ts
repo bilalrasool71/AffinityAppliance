@@ -4,34 +4,53 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
 import { InputTextModule } from 'primeng/inputtext';
-import { PasswordModule } from 'primeng/password';
+import { Password, PasswordModule } from 'primeng/password';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { SelectModule } from 'primeng/select';
+
 @Component({
-  selector: 'app-add-user',
- imports: [
-  UtilitiesModule,
-  SelectModule,
-  CommonModule,
-  ReactiveFormsModule,
-  DropdownModule,
-  EditorModule,
-  InputTextModule,
-  PasswordModule,
-  ColorPickerModule,
-  CheckboxModule,
-  ButtonModule
- ],
-  templateUrl: './add-user.component.html',
-  styleUrl: './add-user.component.scss'
+  selector: 'app-add-company',
+  imports: [
+      UtilitiesModule,
+      SelectModule,
+      CommonModule,
+      ReactiveFormsModule,
+      DropdownModule,
+      EditorModule,
+      InputTextModule,
+      PasswordModule,
+      ColorPickerModule,
+      CheckboxModule,
+      ButtonModule
+  ],
+  templateUrl: './add-company.component.html',
+  styleUrl: './add-company.component.scss'
 })
-export class AddUserComponent {
+export class AddCompanyComponent {
+  companyForm!: FormGroup;
   IsFormSubmitted: boolean = false;
-  sendEmail = false;
-  userForm!: FormGroup;
+  constructor(private fb: FormBuilder){}
+  ngOnInit(): void {
+    this.companyForm = this.fb.group({
+      companyName: ['', Validators.required],
+      companyCode: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      companyTypes: ['', Validators.required],
+      timeZone: ['', Validators.required],
+      mobile: ['', Validators.required],
+      state: ['', [Validators.required]], 
+      color: ['black'],
+      Password: ['', [Validators.required, Validators.minLength(6)]],
+      website: ['', Validators.pattern('https?://.+')],
+      description: [''],
+    });
+  }
+
+
+
 
   states = [
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
@@ -45,12 +64,12 @@ export class AddUserComponent {
     'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
     'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
   ];
-  roles = [
-    { label: 'Super Admin', value: 'superadmin' },
-    { label: 'Admin', value: 'admin' },
-    { label: 'User', value: 'user' }
+  companyTypes = [
+    { label: 'Private', value: 'Private' },
+    { label: 'Public', value: 'Public' },
+    { label: 'LLC', value: 'LLC' },
+    { label: 'Non-Profit', value: 'Non-Profit' }
   ];
-
   timeZones = [
     'UTC-12:00', 'UTC-11:00', 'UTC-10:00', 'UTC-09:00', 'UTC-08:00',
     'UTC-07:00', 'UTC-06:00', 'UTC-05:00', 'UTC-04:00', 'UTC-03:00',
@@ -59,39 +78,16 @@ export class AddUserComponent {
     'UTC+08:00', 'UTC+09:00', 'UTC+10:00', 'UTC+11:00', 'UTC+12:00'
   ];
 
-  userTypes = ['Admin', 'Manager', 'Employee', 'Customer'];
-
-  constructor(private fb: FormBuilder) {
-  
+  onSubmit() {
+    this.IsFormSubmitted = true;
+    if(this.companyForm.invalid) {}
+    else {
+      console.log(this.companyForm.value);
+    };
   }
-ngOnInit(): void {
-  this.userForm = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    mobile: ['', [Validators.required, Validators.pattern(/^\d{10,15}$/)]],
-    role: ['', Validators.required],
-    password: ['', Validators.required],
-    state: [''],
-    userType: [''],
-    timeZone: [''],
-    color: ['#000000'],
-    emailFooter: [''],
-    sendEmail: [false]
-  });
+  
+  Reset() {
+    this.companyForm.reset();
+    this.IsFormSubmitted = false;
+  }
 }
-
-onSubmit() {
-  this.IsFormSubmitted = true;
-  if(this.userForm.invalid) {}
-  else {
-    console.log(this.userForm.value);
-  };
-}
-
-Reset() {
-  this.userForm.reset();
-  this.IsFormSubmitted = false;
-}
-}
-

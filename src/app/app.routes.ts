@@ -16,7 +16,27 @@ export const routes: Routes = [
             {
                 path: 'add-user',
                 loadComponent: () => import('./components/add-user/add-user.component').then(m => m.AddUserComponent),
-            }
+            },
+            {
+                path: 'add-support',
+                loadComponent: () => import('./components/support-form/support-form.component').then(m => m.SupportFormComponent),
+            },
+            {
+                path: 'add-company',
+                loadComponent: () => import('./components/add-company/add-company.component').then(m => m.AddCompanyComponent),
+            },
+            {
+                path: 'add-customer',
+                loadComponent: () => import('./components/add-customer/add-customer.component').then(m => m.AddCustomerComponent),
+            },
+            {
+                path: 'add-reseller',
+                loadComponent: () => import('./components/reseller-form/reseller-form.component').then(m => m.ResellerFormComponent),
+            },
+            {
+                path: 'add-contact',
+                loadComponent: () => import('./components/contact-form/contact-form.component').then(m => m.ContactFormComponent),
+            },
         ]
     },
     {

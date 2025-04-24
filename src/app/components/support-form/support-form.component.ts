@@ -1,0 +1,97 @@
+import { Component } from '@angular/core';
+import { UtilitiesModule } from '../../core/utilities/utilities/utilities.module';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+import { EditorModule } from 'primeng/editor';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { ColorPickerModule } from 'primeng/colorpicker';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common';
+import { SelectModule } from 'primeng/select';
+import { FileUploadModule } from 'primeng/fileupload';
+import { HttpClientModule } from '@angular/common/http';
+import { CalendarModule } from 'primeng/calendar';
+
+@Component({
+  selector: 'app-support-form',
+  imports: [
+    HttpClientModule,
+     UtilitiesModule,
+     SelectModule,
+     CommonModule,
+     ReactiveFormsModule,
+     DropdownModule,
+     EditorModule,
+     InputTextModule,
+     PasswordModule,
+     ColorPickerModule,
+     CheckboxModule,
+     ButtonModule,
+     FileUploadModule,
+     CalendarModule
+  ],
+  templateUrl: './support-form.component.html',
+  styleUrl: './support-form.component.scss'
+})
+export class SupportFormComponent {
+  supportForm!: FormGroup;
+  IsFormSubmitted: boolean = false;
+  constructor(private fb: FormBuilder){}
+
+  ngOnInit(): void {
+    this.supportForm = this.fb.group({
+
+      bugs: ['', Validators.required],
+      priority: ['' , Validators.required],
+      assignee: ['' , Validators.required],
+      image: [''],
+      date:[''],
+      area: ['', Validators.required],
+      descrption: [''],
+      url: ['', [Validators.required, Validators.pattern('https?://.+')]], 
+    });
+  }
+
+
+  imagePreview: string | ArrayBuffer | null = null;
+  
+  bugOptions = [
+    { label: 'UI Bug', value: 'ui' },
+    { label: 'Crash', value: 'crash' },
+  ];
+  priorityOptions = [
+    { label: 'High', value: 'high' },
+    { label: 'Medium', value: 'medium' },
+  ];
+  assigneeOptions = [
+    { label: 'John Doe', value: 'john' },
+    { label: 'Jane Smith', value: 'jane' },
+  ];
+  areaOptions = [
+    { label: 'Frontend', value: 'frontend' },
+    { label: 'Backend', value: 'backend' },
+  ];
+
+  onSubmit() {
+    this.IsFormSubmitted = true;
+    if (this.supportForm.valid) {
+      console.log('✅ Form Submitted:', this.supportForm.value);
+      // Add your API call or Firebase logic here
+    } else {
+      console.warn('❌ Form is invalid. Please fill all required fields.');
+      this.supportForm.markAllAsTouched();
+    }
+  }
+
+  Reset() {
+    this.supportForm.reset();
+    this.IsFormSubmitted = false;
+  }
+
+  onBasicUploadAuto($event:any){
+
+    console.log($event.files[0]);
+  }
+}

@@ -1,0 +1,97 @@
+<div class="flex  w-full py-2 ps-7 bg-green-400 rounded">
+  <h2 class="text-xl font-semibold text-white">New Reseller</h2>
+</div>
+
+<div class="p-6 bg-white rounded shadow w-full">
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="customerForm">
+    <div class="grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 gap-8 mt-1">
+      <div class="mb-0 gap-8">
+        <label class="block font-medium  text-gray-700 mb-2">Customer Type:</label>
+        <div class="flex items-center gap-3">
+          <p-radiobutton name="resellerType" value="regular" formControlName="resellerType" inputId="regular" />
+          <label for="regular">Regular</label>
+
+
+          <p-radiobutton name="resellerType" value="vip" formControlName="resellerType" inputId="vip" />
+          <label for="vip">VIP</label>
+
+          <p-radiobutton name="resellerType" value="new" formControlName="resellerType" inputId="new" />
+          <label for="new">New</label>
+        </div>
+      </div>
+
+      <p-floatlabel variant="on">
+        <input pInputText id="resellerName" formControlName="resellerName" autocomplete="off"
+          [class]="IsFormSubmitted && !customerForm.controls['resellerName'].value ? 'ng-dirty ng-invalid' : ''" />
+        <label for="resellerName">Reseller Name <span class="text-red-500">*</span></label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on">
+        <input pInputText id="email" formControlName="email" autocomplete="off"
+          [class]="IsFormSubmitted && !customerForm.controls['email'].value ? 'ng-dirty ng-invalid' : ''" />
+        <label for="email">Email Address</label>
+      </p-floatlabel>
+
+
+      <p-floatlabel variant="on">
+        <input pInputText type="number" id="phone" formControlName="phone" autocomplete="off" class="w-full"
+          [class]="IsFormSubmitted && customerForm.controls['phone'].invalid ? 'ng-dirty ng-invalid' : ''">
+        <label for="phone">Phone Number</label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on">
+        <input pInputText type="number" id="gst" formControlName="gst" autocomplete="off" class="w-full"
+          [class]="IsFormSubmitted && customerForm.controls['gst'].invalid ? 'ng-dirty ng-invalid' : ''">
+        <label for="gst">GST Number</label>
+      </p-floatlabel>
+
+
+    </div>
+
+    <h2 class="text-lg font-semibold mt-4">Reseller Address</h2>
+    <hr class="mb-5">
+    <div class="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-6 mt-1">
+
+      <p-floatlabel variant="on" class="lg:col-span-3">
+        <input pInputText type="text" id="officeAddress" formControlName="officeAddress" autocomplete="off"
+          class="w-full"
+          [class]="IsFormSubmitted && customerForm.controls['officeAddress'].invalid ? 'ng-dirty ng-invalid' : ''">
+        <label for="officeAddress">Office Address</label>
+      </p-floatlabel>
+
+
+      <p-floatlabel variant="on">
+        <input pInputText type="text" id="streetNo" formControlName="streetNo" autocomplete="off" class="w-full"
+          [class]="IsFormSubmitted && customerForm.controls['streetNo'].invalid ? 'ng-dirty ng-invalid' : ''">
+        <label for="streetNo">Street No</label>
+      </p-floatlabel>
+      <p-floatlabel variant="on" class="lg:col-span-2">
+        <input pInputText type="text" id="streetName" formControlName="streetName" autocomplete="off" class="w-full"
+          [class]="IsFormSubmitted && customerForm.controls['streetName'].invalid ? 'ng-dirty ng-invalid' : ''">
+        <label for="streetName">Street Name</label>
+      </p-floatlabel>
+      <p-floatlabel variant="on">
+        <input pInputText type="text" id="suburb" formControlName="suburb" autocomplete="off" class="w-full"
+          [class]="IsFormSubmitted && customerForm.controls['suburb'].invalid ? 'ng-dirty ng-invalid' : ''">
+        <label for="suburb">Suburb</label>
+      </p-floatlabel>
+      <p-floatlabel variant="on">
+        <input pInputText type="text" id="state" formControlName="state" autocomplete="off" class="w-full"
+          [class]="IsFormSubmitted && customerForm.controls['state'].invalid ? 'ng-dirty ng-invalid' : ''">
+        <label for="state">State </label>
+      </p-floatlabel>
+      <p-floatlabel variant="on">
+        <input pInputText type="number" id="postcode" formControlName="postcode" autocomplete="off" class="w-full"
+          [class]="IsFormSubmitted && customerForm.controls['postcode'].invalid ? 'ng-dirty ng-invalid' : ''">
+        <label for="postcode">Postcode </label>
+      </p-floatlabel>
+    </div>
+
+
+    <div class="card flex justify-end flex-wrap gap-4 mt-2">
+      <p-button type="submit" label="Save" styleClass="m-0" />
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,93 @@
+<div class="flex  w-full py-2 pl-7 bg-green-400 rounded">
+  <h2 class="text-xl font-semibold text-white">New Company</h2>
+</div>
+
+<div class="p-6 bg-white rounded shadow w-full">
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="companyForm">
+    <div class="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-8 mt-1">
+
+      <p-floatlabel variant="on">
+        <input pInputText id="companyName" formControlName="companyName" autocomplete="off"
+          [class]="IsFormSubmitted && !companyForm.controls['companyName'].value ? 'ng-dirty ng-invalid' : ''" />
+        <label for="companyName">Company Name <span class="text-red-500">*</span></label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on">
+        <input pInputText id="companyCode" formControlName="companyCode" autocomplete="off"
+          [class]="IsFormSubmitted && !companyForm.controls['companyCode'].value ? 'ng-dirty ng-invalid' : ''" />
+        <label for="companyCode">Company Code <span class="text-red-500">*</span></label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on">
+        <input pInputText id="email" formControlName="email" autocomplete="off"
+          [class]="IsFormSubmitted && !companyForm.controls['email'].value ? 'ng-dirty ng-invalid' : ''" />
+        <label for="email">Email <span class="text-red-500">*</span></label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on">
+        <p-select inputId="companyTypes" formControlName="companyTypes" [options]="companyTypes"
+          placeholder="Select Types" class="w-full"
+          [class]="IsFormSubmitted && companyForm.controls['companyTypes'].invalid ? 'ng-dirty ng-invalid' : ''">
+        </p-select>
+        <label for="companyTypes">Company Type</label>
+      </p-floatlabel>
+
+
+      <p-floatlabel variant="on">
+        <p-select inputId="state" formControlName="state" [options]="states" placeholder="Select State" class="w-full"
+          [class]="IsFormSubmitted && companyForm.controls['state'].invalid ? 'ng-dirty ng-invalid' : ''">
+        </p-select>
+        <label for="state">State</label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on">
+        <p-select inputId="timeZone" formControlName="timeZone" [options]="timeZones" placeholder="Select Time Zone"
+          class="w-full"
+          [class]="IsFormSubmitted && companyForm.controls['timeZone'].invalid ? 'ng-dirty ng-invalid' : ''">
+        </p-select>
+        <label for="timeZone">Time Zone</label>
+      </p-floatlabel>
+
+
+      <p-floatlabel variant="on">
+        <input pInputText type="number" id="mobile" formControlName="mobile" autocomplete="off" class="w-full"
+          [class]="IsFormSubmitted && companyForm.controls['mobile'].invalid ? 'ng-dirty ng-invalid' : ''">
+        <label for="mobile">Mobile Number <span class="text-red-500">*</span></label>
+      </p-floatlabel>
+
+
+      <p-floatlabel variant="on">
+        <p-password id="password" autocomplete="off" toggleMask="true" feedback="false" formControlName="password"
+          [class]="IsFormSubmitted && !companyForm.controls['password'].value ? 'ng-dirty ng-invalid' : ''" />
+        <label for="password">Password <span class="text-red-500">*</span></label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on">
+        <input pInputText id="website" autocomplete="off" toggleMask="true" feedback="false" formControlName="website"
+          [class]="IsFormSubmitted && !companyForm.controls['website'].value ? 'ng-dirty ng-invalid' : ''" />
+        <label for="website">website <span class="text-red-500">*</span></label>
+      </p-floatlabel>
+
+
+      <div class="field">
+        <label for="color" class="block">Color</label>
+
+        <p-colorPicker inputId="color" formControlName="color" [format]="'hex'" [appendTo]="'body'" styleClass="w-full">
+        </p-colorPicker>
+
+      </div>
+
+    </div>
+
+    <div class="mt-6">
+      <p-editor formControlName="description" styleClass="w-full" [style]="{ height: '200px' }"
+        placeholder="Write description here...">
+      </p-editor>
+    </div>
+    <div class="card flex justify-end flex-wrap gap-4 mt-1">
+      <p-button type="submit" label="Save" styleClass="m-0" />
+    </div>
+
+  </form>
+</div>

@@ -11,29 +11,28 @@ import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { SelectModule } from 'primeng/select';
 @Component({
-  selector: 'app-add-user',
- imports: [
-  UtilitiesModule,
-  SelectModule,
-  CommonModule,
-  ReactiveFormsModule,
-  DropdownModule,
-  EditorModule,
-  InputTextModule,
-  PasswordModule,
-  ColorPickerModule,
-  CheckboxModule,
-  ButtonModule
- ],
-  templateUrl: './add-user.component.html',
-  styleUrl: './add-user.component.scss'
+  selector: 'app-contact-form',
+  imports: [
+    UtilitiesModule,
+    SelectModule,
+    CommonModule,
+    ReactiveFormsModule,
+    DropdownModule,
+    EditorModule,
+    InputTextModule,
+    PasswordModule,
+    ColorPickerModule,
+    CheckboxModule,
+    ButtonModule
+  ],
+  templateUrl: './contact-form.component.html',
+  styleUrl: './contact-form.component.scss'
 })
-export class AddUserComponent {
+export class ContactFormComponent {
   IsFormSubmitted: boolean = false;
-  sendEmail = false;
-  userForm!: FormGroup;
+  contactForm!: FormGroup;
 
-  states = [
+  country = [
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
     'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
     'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa',
@@ -45,53 +44,39 @@ export class AddUserComponent {
     'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
     'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
   ];
-  roles = [
-    { label: 'Super Admin', value: 'superadmin' },
-    { label: 'Admin', value: 'admin' },
-    { label: 'User', value: 'user' }
-  ];
 
-  timeZones = [
-    'UTC-12:00', 'UTC-11:00', 'UTC-10:00', 'UTC-09:00', 'UTC-08:00',
-    'UTC-07:00', 'UTC-06:00', 'UTC-05:00', 'UTC-04:00', 'UTC-03:00',
-    'UTC-02:00', 'UTC-01:00', 'UTC+00:00', 'UTC+01:00', 'UTC+02:00',
-    'UTC+03:00', 'UTC+04:00', 'UTC+05:00', 'UTC+06:00', 'UTC+07:00',
-    'UTC+08:00', 'UTC+09:00', 'UTC+10:00', 'UTC+11:00', 'UTC+12:00'
-  ];
-
-  userTypes = ['Admin', 'Manager', 'Employee', 'Customer'];
 
   constructor(private fb: FormBuilder) {
   
   }
 ngOnInit(): void {
-  this.userForm = this.fb.group({
+  this.contactForm = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     mobile: ['', [Validators.required, Validators.pattern(/^\d{10,15}$/)]],
-    role: ['', Validators.required],
-    password: ['', Validators.required],
-    state: [''],
-    userType: [''],
-    timeZone: [''],
-    color: ['#000000'],
-    emailFooter: [''],
-    sendEmail: [false]
+    companyName: [''],
+    jobTitle: [''],
+    website: [''],
+    address: [''],
+    country: [''],
+    city: [''],
+    message: [''],
   });
 }
 
 onSubmit() {
   this.IsFormSubmitted = true;
-  if(this.userForm.invalid) {}
+  if(this.contactForm.invalid) {}
   else {
-    console.log(this.userForm.value);
+    console.log(this.contactForm.value);
   };
 }
 
 Reset() {
-  this.userForm.reset();
+  this.contactForm.reset();
   this.IsFormSubmitted = false;
 }
 }
+
 

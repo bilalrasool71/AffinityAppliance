@@ -1,0 +1,85 @@
+<div class="flex w-full py-2 ps-7 bg-green-400 rounded">
+  <h2 class="text-xl font-semibold text-white">New Support</h2>
+</div>
+
+<div class="p-6 bg-white rounded shadow w-full">
+  <form (ngSubmit)="onSubmit()" [formGroup]="supportForm">
+    <div class="grid grid-cols-12 gap-6">
+      <div class="col-span-12 md:col-span-7">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <p-floatlabel variant="on">
+            <p-select inputId="bugs" formControlName="bugs" [options]="bugOptions" placeholder="Select Bugs"
+              class="w-full border"
+              [class]="IsFormSubmitted && !supportForm.controls['bugs'].value ? 'ng-dirty ng-invalid' : ''">
+            </p-select>
+            <label for="bugs">Bugs <span class="text-red-500">*</span></label>
+          </p-floatlabel>
+
+          <p-floatlabel variant="on">
+            <p-select inputId="priority" formControlName="priority" [options]="priorityOptions"
+              placeholder="Select priority" class="w-full"
+              [class]="IsFormSubmitted && supportForm.controls['priority'].invalid ? 'ng-dirty ng-invalid' : ''">
+            </p-select>
+            <label for="priority">Priority<span class="text-red-500">*</span></label>
+          </p-floatlabel>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <p-floatlabel variant="on">
+            <p-select inputId="assignee" formControlName="assignee" [options]="assigneeOptions"
+              placeholder="Select Assignee" class="w-full"
+              [class]="IsFormSubmitted && supportForm.controls['assignee'].invalid ? 'ng-dirty ng-invalid' : ''">
+            </p-select>
+            <label for="assignee">Assignee <span class="text-red-500">*</span></label>
+          </p-floatlabel>
+
+          <div class="w-full">
+            <p-floatlabel variant="on" class="w-full">
+              <p-calendar inputId="date" formControlName="date" [showIcon]="true" class="w-full" styleClass="w-full"
+                inputStyleClass="w-full"></p-calendar>
+              <label for="date">Date</label>
+            </p-floatlabel>
+          </div>
+        </div>
+
+        <div class="w-full mb-4">
+          <p-floatlabel variant="on" class="w-full mb-4">
+            <p-select inputId="area" formControlName="area" [options]="areaOptions" placeholder="Select area"
+              class="w-full"
+              [class]="IsFormSubmitted && supportForm.controls['area'].invalid ? 'ng-dirty ng-invalid' : ''">
+            </p-select>
+            <label for="area">Area<span class="text-red-500">*</span></label>
+          </p-floatlabel>
+
+          <p-floatlabel variant="on" class="w-full mb-4">
+            <textarea pTextarea id="description" formControlName="description" rows="5" cols="30"
+              style="resize: none; width: 100%; border: .7px solid #ced4da; border-radius: 4px;"
+              class="w-full p-2"></textarea>
+            <label for="description">Description</label>
+          </p-floatlabel>
+
+          <p-floatlabel variant="on" class="w-full">
+            <input pInputText type="url" id="url" formControlName="url" autocomplete="off" class="w-full"
+              [class]="IsFormSubmitted && !supportForm.controls['url'].value ? 'ng-dirty ng-invalid' : ''" />
+            <label for="url">Url <span class="text-red-500">*</span></label>
+          </p-floatlabel>
+
+        </div>
+      </div>
+
+      <div class="col-span-12 md:col-span-5">
+        <div
+          class="text-center border border-gray-300 rounded-md p-4 flex flex-col items-center justify-center bg-gray-50 shadow-sm"
+          style="height: calc(10rem + 4rem);">
+          <p-fileupload mode="basic" name="demo[]" chooseIcon="pi pi-upload"
+            url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000"
+            (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Browse" />
+        </div>
+      </div>
+    </div>
+
+    <div class="card flex justify-end flex-wrap gap-4 mt-4">
+      <p-button type="submit" label="Save" styleClass="m-0" />
+    </div>
+  </form>
+</div>
