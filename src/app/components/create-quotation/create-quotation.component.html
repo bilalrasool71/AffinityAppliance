@@ -1,1 +1,287 @@
-<p>create-quotation works!</p>
+<div class="flex  w-full py-2 ps-7 bg-green-400 rounded">
+  <h2 class="text-xl font-semibold">Create-Quotation
+  </h2>
+</div>
+
+<div class="card flex flex-wrap gap-2 mt-2">
+  <p-button label="Send Email" size="small" severity="secondary" />
+  <p-button label="View PDF" size="small" severity="secondary" />
+  <p-button label="Audit Log" size="small" severity="secondary" />
+  <p-button label="Signed Documents" size="small" severity="secondary" />
+</div>
+<p-divider></p-divider>
+<div class="shadow p-5 shadow">
+  <form (ngSubmit)="onSubmit()" [formGroup]="quotationForm">
+
+    <div class="p-1 bg-white rounded shadow w-full mb-8">
+
+      <h4 class="flex">
+        Quotation No: QUO-14835 (Draft)
+        <p-button icon="pi pi-pencil" text="small" aria-label="Edit" size="small" />
+      </h4>
+      <div class="flex mb-0 gap-8 mb-4">
+        <label class="flex font-small text-gray-700">Is this quotation for the existing job?:</label>
+        <div class="flex items-center gap-3">
+          <p-radiobutton name="exJob" value="regular" formControlName="exJob" inputId="regular" />
+          <label for="yes">Yes</label>
+
+
+          <p-radiobutton name="exJob" value="vip" formControlName="exJob" inputId="vip" />
+          <label for="no">No</label>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="grid lg:grid-cols-4 md:grid-cols-1 sm:grid-cols-1 gap-6 mt-1">
+      <p-floatlabel variant="on">
+        <p-select inputId="jobType" formControlName="jobType" [options]="jobTypes" placeholder="Select Job Type"
+          class="w-full">
+        </p-select>
+        <label for="jobType">Job Type</label>
+      </p-floatlabel>
+      <p-floatlabel variant="on">
+        <p-select inputId="customer" formControlName="customer" [options]="jobTypes" placeholder="Customer"
+          class="w-full">
+        </p-select>
+        <label for="userType">Customer</label>
+      </p-floatlabel>
+      <p-floatlabel variant="on">
+        <p-select inputId="siteAddress" formControlName="siteAddress" [options]="jobTypes" placeholder="siteAddress"
+          class="w-full">
+        </p-select>
+        <label for="userType">Site Address </label>
+      </p-floatlabel>
+
+
+      <p-floatlabel variant="on">
+        <input pInputText type="text" id="reference" formControlName="reference" autocomplete="off" class="w-full"
+          [class]="IsFormSubmitted && quotationForm.controls['reference'].invalid ? 'ng-dirty ng-invalid' : ''">
+        <label for="reference">Reference</label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on" class="w-full">
+        <p-calendar inputId="quotationDate" formControlName="quotationDate" [showIcon]="true" class="w-full"
+          styleClass="w-full" inputStyleClass="w-full"></p-calendar>
+        <label for="quotationDate">Quotation Date</label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on">
+        <input pInputText type="text" id="validfor" formControlName="validfor" autocomplete="off" class="w-full"
+          [class]="IsFormSubmitted && quotationForm.controls['validfor'].invalid ? 'ng-dirty ng-invalid' : ''">
+        <label for="validfor">Valid For</label>
+      </p-floatlabel>
+      <p-floatlabel variant="on" class="w-full">
+        <p-calendar inputId="validuntil" formControlName="validuntil" [showIcon]="true" class="w-full"
+          styleClass="w-full" inputStyleClass="w-full"></p-calendar>
+        <label for="validuntil">Valid Until</label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on">
+        <input pInputText type="text" id="gst" formControlName="gst" autocomplete="off" class="w-full"
+          [class]="IsFormSubmitted && quotationForm.controls['gst'].invalid ? 'ng-dirty ng-invalid' : ''">
+        <label for="gst">GST</label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on">
+        <input pInputText type="number" id="logoTemplate" formControlName="logoTemplate" autocomplete="off"
+          class="w-full"
+          [class]="IsFormSubmitted && quotationForm.controls['logoTemplate'].invalid ? 'ng-dirty ng-invalid' : ''">
+        <label for="logoTemplate">Logo Template </label>
+      </p-floatlabel>
+    </div>
+
+    <div class="card flex flex-wrap gap-2 mt-20">
+      <p-button label="Line Items" size="small" severity="secondary" />
+      <p-button label="T&Cs" size="small" severity="secondary" />
+      <p-button label="Additional Notes" size="small" severity="secondary" />
+      <p-button label="Attachments" size="small" severity="secondary" />
+      <p-button label="Before Quotation Content" size="small" severity="secondary" />
+
+    </div>
+    <div class="card flex flex-wrap gap-2 mt-4">
+      <p-button label="Add Item from Inventory" size="small" severity="secondary" />
+      <p-button label="Add Item From Sale Products" size="small" severity="secondary" />
+      <p-button label="Add Extra Service Charges" size="small" severity="secondary" />
+      <p-button label="Add Scheme Products" size="small" severity="secondary" />
+      <p-button label="Auto Select Lead Products" size="small" severity="secondary" />
+
+    </div>
+
+
+
+    <div class="mt-3">
+      <p-table [value]="products.controls" showGridlines [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Description</th>
+            <th>Product Code</th>
+            <th>Quantity</th>
+            <th>Discount (%)</th>
+            <th>Unit Price</th>
+            <th>Amount</th>
+            <th style="width: 9%">Action</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-productForm let-i="rowIndex">
+          <tr [formGroup]="productForm">
+            <td>
+              <p-floatlabel variant="on">
+                <textarea pTextarea id="description" formControlName="description"
+                  class="p-inputtext w-full p-filled"></textarea>
+                <label for="description">description</label>
+              </p-floatlabel>
+            </td>
+
+            <td>
+              <p-floatlabel variant="on">
+                <input pInputText type="text" id="productCode" formControlName="productCode" autocomplete="off"
+                  class="w-full p-filled">
+                <label for="productCode">Product Code</label>
+              </p-floatlabel>
+            </td>
+
+            <td>
+              <p-floatlabel variant="on">
+                <input pInputText type="number" id="quantity" formControlName="quantity" autocomplete="off"
+                  class="w-full">
+                <label for="quantity">Quantity</label>
+              </p-floatlabel>
+            </td>
+
+            <td>
+              <p-floatlabel variant="on">
+                <input pInputText type="number" id="discount" formControlName="discount" autocomplete="off"
+                  class="w-full">
+                <label for="discount">Discount</label>
+              </p-floatlabel>
+            </td>
+
+            <td>
+              <p-floatlabel variant="on">
+                <input pInputText type="number" id="unitPrice" formControlName="unitPrice" autocomplete="off"
+                  class="w-full">
+                <label for="unitPrice">Unit Price</label>
+              </p-floatlabel>
+            </td>
+
+            <td>
+              <p-floatlabel variant="on">
+                <input pInputText type="number" id="amount" formControlName="amount" autocomplete="off" class="w-full">
+                <label for="amount">Amount</label>
+              </p-floatlabel>
+            </td>
+
+            <td class="text-center">
+              <button pButton type="button" icon="pi pi-plus" class="p-button" (click)="addProduct()"></button>
+            </td>
+          </tr>
+          <tr *ngFor="let product of productList; let i = index">
+            <td>{{ product.description }}</td>
+            <td>{{ product.productCode }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.discount }}</td>
+            <td>{{ product.unitPrice | currency:'USD' }}</td>
+            <td>{{ product.amount | currency:'USD' }}</td>
+            <td class="text-center">
+              <div class="p-buttonset">
+                <button pButton type="button" icon="pi pi-trash" class="p-button p-button-danger mx-1" size="small"
+                  (click)="removeProduct(i)"></button>
+
+                <button pButton type="button" icon="pi pi-pencil" class="p-button p-button-info mx-1" size="small"
+                  (click)="onEdit(i)"></button>
+              </div>
+            </td>
+
+
+
+          </tr>
+        </ng-template>
+      </p-table>
+
+
+    </div>
+
+
+
+    <div class="flex w-full mt-10">
+      <div class="w-9/12 pr-4">
+        <p-editor formControlName="text" [style]="{ height: '180px', width: '100%' }">
+        </p-editor>
+      </div>
+
+      <div class="w-3/12 shadow p-4 bg-white rounded-lg">
+        <p-table [value]="[
+        { label: 'Total', value: 1041 },
+        { label: 'GST', value: 1254 },
+        { label: 'Total Amount', value: 2295 }
+      ]">
+          <ng-template pTemplate="body" let-rowData>
+            <tr>
+              <th class="text-left font-semibold">{{ rowData.label }}</th>
+              <td class="text-right">{{ rowData.value }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+
+
+    <div class="w-full py-2 my-5">
+      <div class="flex mb-0 gap-8 mb-4">
+        <label class="flex font-small text-gray-700">Send reminders to client?:</label>
+        <div class="flex items-center gap-3">
+          <p-radiobutton name="sendReminders" value="yes" formControlName="sendReminders" inputId="sendReminders" />
+          <label for="yes">Yes</label>
+          <p-radiobutton name="sendReminders" value="no" formControlName="sendReminders" inputId="sendReminders" />
+          <label for="no">No</label>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 mb-4">
+        <p-checkbox inputId="receivenotifications" name="size" value="receivenotifications" />
+        <label for="receivenotifications" class="text-sm">Receive notifications (viewed,accepted,paid,rejected)?</label>
+      </div>
+      <div class="flex mb-0 gap-8 mb-4">
+        <label class="flex font-small text-gray-700">Is Under Financing Agreement?:</label>
+        <div class="flex items-center gap-3">
+          <p-radiobutton name="agreement" value="yes" formControlName="agreement" inputId="agreement" />
+          <label for="yes">Yes</label>
+          <p-radiobutton name="agreement" value="no" formControlName="agreement" inputId="agreement" />
+          <label for="no">No</label>
+        </div>
+      </div>
+      <div class="flex mb-0 gap-8 mb-4">
+        <label class="flex font-small text-gray-700">Payment Required?:</label>
+        <div class="flex items-center gap-3">
+          <p-radiobutton name="paymentRequired" value="yes" formControlName="paymentRequired"
+            inputId="paymentRequired" />
+          <label for="yes">Yes</label>
+          <p-radiobutton name="paymentRequired" value="no" formControlName="paymentRequired" inputId="vip" />
+          <label for="no">No</label>
+        </div>
+      </div>
+      <div class="flex mb-0 gap-8 mb-4">
+        <label class="flex font-small text-gray-700">Create new job after initial deposit paid?:</label>
+        <div class="flex items-center gap-3">
+          <p-radiobutton name="newJob" value="yes" formControlName="newJob" inputId="newJob" />
+          <label for="yes">Yes</label>
+          <p-radiobutton name="newJob" value="no" formControlName="newJob" inputId="newJob" />
+          <label for="no">No</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="mt-4">
+      <button pButton type="submit" label="Submit" icon="pi pi-check" class="p-button-sm" style="width: auto;"
+        [disabled]="products.controls.length === 0"></button>
+    </div>
+
+
+
+  </form>
+</div>

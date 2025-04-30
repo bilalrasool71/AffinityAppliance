@@ -1,0 +1,354 @@
+<div class="border border-gray-300 p-3 my-1 rounded text-gray-700 text-md space-y-1">
+  <p><strong>Appointment No:</strong> AP-00965 <strong>Type:</strong> Sales Assesment</p>
+  <p><strong>Scheme:</strong> Pool Pump</p>
+  <p><strong>Address:</strong> 2b Colton Magill SA 5072</p>
+  <p><strong>Assess By:</strong> Shaikh Siddiqui (15/04/2025 12:46 PM)</p>
+  <p> <span class="text-blue-500">QUO-14829 </span> Draft $ 999.00</p>
+  <p class="flex justify-between items-center">
+    <span>Has this customer had this service before?:<strong> No</strong></span>
+    <button class="text-sm px-3 py-1 bg-green-400 text-white rounded hover:bg-green-600">Complete</button>
+  </p>
+
+</div>
+
+<div class="mt-5 px-4">
+  <div class="flex flex-wrap gap-2 md:gap-4">
+    <p-button label="Customer" variant="outlined" severity="secondary" (click)="value = 0"
+      [ngClass]="value === 0 ? 'bg-green-200' : ''" class="w-full md:w-auto flex-1 min-w-[120px]"></p-button>
+
+    <p-button label="Questions" variant="outlined" severity="secondary" (click)="value = 1"
+      [ngClass]="value === 1 ? 'bg-green-200' : ''" class="w-full md:w-auto flex-1 min-w-[120px]"></p-button>
+
+    <p-button label="Products" variant="outlined" severity="secondary" (click)="value = 2"
+      [ngClass]="value === 2 ? 'bg-green-200' : ''" class="w-full md:w-auto flex-1 min-w-[120px]"></p-button>
+
+    <p-button label="Signatures" variant="outlined" severity="secondary" (click)="value = 3"
+      [ngClass]="value === 3 ? 'bg-green-200' : ''" class="w-full md:w-auto flex-1 min-w-[120px]"></p-button>
+
+    <p-button label="Additional Files" variant="outlined" severity="secondary" (click)="value = 4"
+      [ngClass]="value === 4 ? 'bg-green-200' : ''" class="w-full md:w-auto flex-1 min-w-[120px]"></p-button>
+
+    <p-button label="All Files" variant="outlined" severity="secondary" (click)="value = 5"
+      [ngClass]="value === 5 ? 'bg-green-200' : ''" class="w-full md:w-auto flex-1 min-w-[120px]"></p-button>
+
+    <p-button label="Deleted Files" variant="outlined" severity="secondary" (click)="value = 6"
+      [ngClass]="value === 6 ? 'bg-green-200' : ''" class="w-full md:w-auto flex-1 min-w-[120px]"></p-button>
+  </div>
+</div>
+
+
+
+<form [formGroup]="customerForm" (ngSubmit)="onSubmit()" class="p-4">
+  <div [ngClass]="{'hidden': value !== 0}">
+    <h4 class="text-lg font-light p-3 bg-green-500 text-white my-6">Customer Details</h4>
+
+    <div class="flex gap-4">
+      <div class="flex items-center gap-2">
+        <p-radiobutton inputId="business" name="customerType" value="business" size="small"
+          formControlName="customerType" />
+        <label for="business" class="text-sm">Business</label>
+        <p-radiobutton inputId="residential" name="customerType" value="residential" size="small"
+          formControlName="customerType" />
+        <label for="residential" class="text-sm">Residential</label>
+      </div>
+    </div>
+    <div class="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-8 mt-1 mt-5">
+
+      <p-floatlabel variant="on">
+        <input pInputText id="businessName" formControlName="businessName" autocomplete="off"
+          [class]="IsFormSubmitted && !customerForm.controls['businessName'].value ? 'ng-dirty ng-invalid' : ''" />
+        <label for="businessName">Business Name <span class="text-red-500">*</span></label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on">
+        <input pInputText id="tradingAs" formControlName="tradingAs" autocomplete="off"
+          [class]="IsFormSubmitted && !customerForm.controls['tradingAs'].value ? 'ng-dirty ng-invalid' : ''" />
+        <label for="tradingAs">Trading As</label>
+      </p-floatlabel>
+      <p-floatlabel variant="on">
+        <input pInputText id="abn" formControlName="abn" autocomplete="off"
+          [class]="IsFormSubmitted && !customerForm.controls['abn'].value ? 'ng-dirty ng-invalid' : ''" />
+        <label for="abn">ABN</label>
+      </p-floatlabel>
+      <p-floatlabel variant="on">
+        <p-select inputId="industryType" formControlName="industryType" [options]="industryTypes"
+          placeholder="Select Types" class="w-full"
+          [class]="IsFormSubmitted && customerForm.controls['industryType'].invalid ? 'ng-dirty ng-invalid' : ''">
+        </p-select>
+        <label for="industryType">Industry Type</label>
+      </p-floatlabel>
+    </div>
+    <h4 class="text-lg font-light p-3 bg-green-500 text-white my-6">PRIMARY CONTACT</h4>
+    <div class="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-8 mt-1 mt-5">
+
+      <p-floatlabel variant="on">
+        <input pInputText id="name" formControlName="name" autocomplete="off"
+          [class]="IsFormSubmitted && !customerForm.controls['name'].value ? 'ng-dirty ng-invalid' : ''" />
+        <label for="name">Name <span class="text-red-500">*</span></label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on">
+        <input pInputText type="email" id="email" formControlName="email" autocomplete="off"
+          [class]="IsFormSubmitted && !customerForm.controls['email'].value ? 'ng-dirty ng-invalid' : ''" />
+        <label for="email">Email</label>
+      </p-floatlabel>
+      <p-floatlabel variant="on">
+        <input pInputText type="number" id="phone" formControlName="phone" autocomplete="off"
+          [class]="IsFormSubmitted && !customerForm.controls['phone'].value ? 'ng-dirty ng-invalid' : ''" />
+        <label for="phone">Phone</label>
+      </p-floatlabel>
+      <p-floatlabel variant="on">
+        <input pInputText type="number" id="mobile" formControlName="mobile" autocomplete="off"
+          [class]="IsFormSubmitted && !customerForm.controls['mobile'].value ? 'ng-dirty ng-invalid' : ''" />
+        <label for="mobile">Mobile</label>
+      </p-floatlabel>
+      <p-floatlabel variant="on">
+        <input pInputText id="position" formControlName="position" autocomplete="off"
+          [class]="IsFormSubmitted && !customerForm.controls['position'].value ? 'ng-dirty ng-invalid' : ''" />
+        <label for="position">Position</label>
+      </p-floatlabel>
+    </div>
+    <div class="flex gap-4 mt-5">
+      <p class="text-gray-700">Do you want to add secondary contact?:</p>
+      <div class="flex items-center gap-2">
+
+        <p-radiobutton inputId="yes" name="secondaryContact" value="yes" size="small"
+          formControlName="secondaryContact" />
+        <label for="yes" class="text-sm">Yes</label>
+        <p-radiobutton inputId="no" name="secondaryContact" value="no" size="small"
+          formControlName="secondaryContact" />
+        <label for="no" class="text-sm">No</label>
+      </div>
+    </div>
+    <div class="flex my-5">
+      <p-button type="button" label="Save & Next" (click)="value = 1"></p-button>
+    </div>
+  </div>
+  <!-- ........................................customer form End........................... -->
+  <div [ngClass]="{'hidden': value !== 1}">
+    <div class="p-4 max-w-5xl">
+      <!-- Premises Frontage/Location Photo -->
+      <div class="mb-6">
+        <h2 class="text-lg font-medium mb-2 text-gray-700">Premises Frontage/Location Photo</h2>
+        <div class="mb-2">
+          <p-fileUpload #frontageUpload 
+                       mode="advanced" 
+                       [showUploadButton]="false" 
+                       [showCancelButton]="false"
+                       [multiple]="true"
+                       accept="image/*"
+                       [maxFileSize]="10000000"
+                       chooseLabel="Upload"
+                       styleClass="w-full">
+            <ng-template pTemplate="content">
+              <div class="flex flex-col items-center justify-center p-5 border-2 border-dashed border-gray-300 rounded-md bg-gray-100">
+                <i class="pi pi-cloud-upload text-4xl text-gray-400 mb-2"></i>
+                <p class="mb-2 text-center text-gray-500">Drag & Drop files here</p>
+                <p class="text-center text-gray-500">Or</p>
+                <p class="text-center text-gray-500">Click to select</p>
+              </div>
+            </ng-template>
+          </p-fileUpload>
+        </div>
+        
+        <!-- Preview area for frontage photos -->
+        <div *ngIf="frontagePhotos.length > 0" class="flex flex-wrap gap-2 mt-6">
+          <div *ngFor="let file of frontagePhotos" class="relative w-20 h-20">
+            
+            <!-- Overlay Buttons ABOVE image -->
+            <div class="absolute -top-7 right-0 flex space-x-1 z-10">
+              <button 
+                pButton 
+                icon="pi pi-download" 
+                class="p-button-sm p-button-rounded p-button-text p-button-secondary"
+               
+              ></button>
+              <button 
+                pButton 
+                icon="pi pi-trash" 
+                class="p-button-sm p-button-rounded p-button-text p-button-danger"
+            
+              ></button>
+            </div>
+        
+            <!-- Image -->
+            <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden">
+              <img [src]="file.objectURL || ''" class="w-full h-full object-cover" />
+            </div>
+        
+          </div>
+        </div>
+        <p-floatLabel variant="on" class="w-full mt-5">
+          <textarea 
+            pTextarea 
+            id="nots" 
+            class="w-full resize-none h-full p-2 border border-gray-300 p-filled
+            rounded-md focus:outline-none"
+          ></textarea>
+          <label for="nots">Nots</label>
+        </p-floatLabel>
+      </div>
+      
+      <!-- Utility Bill Photo (all pages) -->
+      <div class="mb-6">
+        <h2 class="text-lg font-medium mb-2 text-gray-700">Utility Bill Photo (all pages)</h2>
+        <div class="mb-2">
+          <p-fileUpload #utilityBillUpload 
+                       mode="advanced" 
+                       [showUploadButton]="false" 
+                       [showCancelButton]="false"
+                       [multiple]="true"
+                       accept="image/*"
+                       [maxFileSize]="10000000"
+                       chooseLabel="Upload"
+                       styleClass="w-full">
+            <ng-template pTemplate="content">
+              <div class="flex flex-col items-center justify-center p-5 border-2 border-dashed border-gray-300 rounded-md bg-gray-100">
+                <i class="pi pi-cloud-upload text-4xl text-gray-400 mb-2"></i>
+                <p class="mb-2 text-center text-gray-500">Drag & Drop files here</p>
+                <p class="text-center text-gray-500">Or</p>
+                <p class="text-center text-gray-500">Click to select</p>
+              </div>
+            </ng-template>
+          </p-fileUpload>
+        </div>
+     
+        
+        
+        <!-- Preview area for utility bill photos -->
+        <div *ngIf="frontagePhotos.length > 0" class="flex flex-wrap gap-2 mt-6">
+          <div *ngFor="let file of frontagePhotos" class="relative w-20 h-20">
+            
+            <!-- Overlay Buttons ABOVE image -->
+            <div class="absolute -top-7 right-0 flex space-x-1 z-10">
+              <button 
+                pButton 
+                icon="pi pi-download" 
+                class="p-button-sm p-button-rounded p-button-text p-button-secondary"
+               
+              ></button>
+              <button 
+                pButton 
+                icon="pi pi-trash" 
+                class="p-button-sm p-button-rounded p-button-text p-button-danger"
+            
+              ></button>
+            </div>
+        
+            <!-- Image -->
+            <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden">
+              <img [src]="file.objectURL || ''" class="w-full h-full object-cover" />
+            </div>
+        
+          </div>
+        </div>
+        <p-floatLabel variant="on" class="w-full mt-5">
+          <textarea 
+            pTextarea 
+            id="nots" 
+            class="w-full resize-none h-full p-2 border border-gray-300 p-filled
+            rounded-md focus:outline-none"
+          ></textarea>
+          <label for="nots">Nots</label>
+        </p-floatLabel>
+      </div>
+      
+      <!-- Save & Next Button -->
+      <div class="flex my-5">
+        <p-button type="button" label="Save & Next" (click)="value = 2"></p-button>
+      </div>
+    </div>
+</div>
+<!-- ....................................questions End............... -->
+<div [ngClass]="{'hidden': value !== 2}">
+  <div class="p-4 max-w-5xl">
+  <div class="flex my-4">
+    <p-button type="button" label="Add product"></p-button>
+  </div>
+  <h2 class="text-lg font-medium mb-5 text-gray-700 bg-gray-100 p-2">
+    PRODUCT1-AA-VSPP-1.5-1-AFFINITY APPLIANCE VARIABLE SPEED POOL PUMP 1.5HP VI (QTY=1)
+  </h2>
+    <h2 class="text-lg font-medium mb-5 text-gray-500"> AA-VSPP-1.5-1 Location 1</h2>
+    <h2 class="text-lg font-medium mb-2 text-gray-500"> 
+      Geotagged photo of the new equipment name plate including make/model/ and serial number - 1
+    </h2>
+
+    <div class="mb-2">
+      <p-fileUpload #utilityBillUpload 
+                   mode="advanced" 
+                   [showUploadButton]="false" 
+                   [showCancelButton]="false"
+                   [multiple]="true"
+                   accept="image/*"
+                   [maxFileSize]="10000000"
+                   chooseLabel="Upload"
+                   styleClass="w-full">
+        <ng-template pTemplate="content">
+          <div class="flex flex-col items-center justify-center p-5 border-2 border-dashed border-gray-300 rounded-md bg-gray-100">
+            <i class="pi pi-cloud-upload text-4xl text-gray-400 mb-2"></i>
+            <p class="mb-2 text-center text-gray-500">Drag & Drop files here</p>
+            <p class="text-center text-gray-500">Or</p>
+            <p class="text-center text-gray-500">Click to select</p>
+          </div>
+        </ng-template>
+      </p-fileUpload>
+      <p-floatLabel variant="on" class="w-full mt-5">
+        <textarea 
+          pTextarea 
+          id="nots" 
+          class="w-full resize-none h-full p-2 border border-gray-300 p-filled
+          rounded-md focus:outline-none"
+        ></textarea>
+        <label for="nots">Nots</label>
+      </p-floatLabel>
+    </div>
+</div>
+<div class="flex my-5 ms-4">
+  <p-button type="button" label="Save & Next" (click)="value = 3"></p-button>
+</div>
+</div>
+<!-- ....................................products End............... -->
+ <div [ngClass]="{'hidden': value !== 3}">
+  <div class="p-4 max-w-5xl">
+    <div class="flex flex-col">
+      <img src="https://icon2.cleanpng.com/20180517/afq/avryomyik.webp" alt="" class="w-64">
+    </div>
+    <div class="flex flex-col mt-5">
+      <p><strong>Signed Date:</strong>  17/04/2025 03:01 PM</p>
+      <p><strong>Signed By (Installer):</strong> Shaikh Siddiqui</p>
+    </div>
+  </div>
+  <div class="flex my-5 ms-4">
+    <p-button type="button" label="Save & Next" (click)="value = 4"></p-button>
+  </div>
+ </div>
+<!-- ....................................signatures End............... -->
+<div [ngClass]="{'hidden': value !== 4}">
+  <h2 class="text-lg font-medium mb-5 text-gray-700"> Additional Evidence  </h2>
+  <div class="flex my-5  items-center gap-2 justify-between">
+    <p-fileupload #fu mode="basic" chooseLabel="Choose" chooseIcon="pi pi-upload" name="demo[]" 
+    url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000"  />
+    <p-button type="button" label="Upload" (click)="fu.upload()" class="ml-2"></p-button>
+  </div>
+  <div class="flex my-10 ">
+    <p-button type="button" label="Save & Next" (click)="value = 5"></p-button>
+  </div>
+  </div>
+  <!-- ....................................additional files End............... -->
+<div [ngClass]="{'hidden': value !== 5}">
+  <div *ngIf="frontagePhotos.length > 0" class="flex flex-wrap gap-2 mt-6">
+    <div *ngFor="let file of frontagePhotos" class="relative w-40 h-40">
+  
+      <!-- Image -->
+      <div class="w-40 h-40 border border-gray-200 rounded-md overflow-hidden">
+        <img [src]="file.objectURL || ''" class="w-full h-full object-cover" />
+      </div>
+  
+    </div>
+  </div>
+  <div class="flex my-10">
+    <p-button type="button" label="Save & Next" (click)="value = 6"></p-button>
+  </div>
+  </div>
+
+</form>

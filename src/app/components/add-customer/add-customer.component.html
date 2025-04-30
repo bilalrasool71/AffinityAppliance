@@ -1,103 +1,228 @@
-<div class="flex  w-full py-2 ps-7 bg-green-400 rounded">
+<!-- Design 1: Modern Line Tab Design -->
+<div class="flex w-full py-2 ps-7 bg-green-400 rounded">
   <h2 class="text-xl font-semibold text-white">New Customer</h2>
 </div>
 
 <div class="p-6 bg-white rounded shadow w-full">
 
-  <form (ngSubmit)="onSubmit()" [formGroup]="customerForm">
-    <div class="grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 gap-8 mt-1">
-      <div class="mb-0 gap-8">
-        <label class="block font-medium  text-gray-700 mb-2">Customer Type:</label>
-        <div class="flex items-center gap-3">
-          <p-radiobutton name="customerType" value="regular" formControlName="customerType" inputId="regular" />
-          <label for="regular">Regular</label>
 
+  <div class="mb-6">
+    <div class="flex space-x-2">
+      <p-button 
+        label="Individual" 
+        variant="outlined" 
+        severity="secondary"
+        (click)="value = 1"
+        [ngClass]="value === 1 ? 'bg-green-200' : ''"
+      ></p-button>
+  
+      <p-button 
+        label="Business" 
+        variant="outlined"
+        severity="secondary" 
+        (click)="value = 0"
+        [ngClass]="value === 0 ? 'bg-green-200 ' : ''"
+      ></p-button>
+    </div>
+  </div>
+  
 
-          <p-radiobutton name="customerType" value="vip" formControlName="customerType" inputId="vip" />
-          <label for="vip">VIP</label>
+  <!-- Tab content panels -->
+  <div [ngClass]="{'hidden': value !== 0}">
+    <form (ngSubmit)="onSubmitbusiness()" [formGroup]="businessForm">
+      <div class="grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 gap-8 mt-1">
+     
+        <p-floatlabel variant="on">
+          <input pInputText id="businessName" formControlName="businessName" autocomplete="off"
+            [class]="IsFormSubmitted && !businessForm.controls['businessName'].value ? 'ng-dirty ng-invalid' : ''" />
+          <label for="businessName">Business Name <span class="text-red-500">*</span></label>
+        </p-floatlabel>
 
-          <p-radiobutton name="customerType" value="new" formControlName="customerType" inputId="new" />
-          <label for="new">New</label>
-        </div>
+        <p-floatlabel variant="on">
+          <input pInputText id="businessEmail" formControlName="businessEmail" autocomplete="off"
+            [class]="IsFormSubmitted && !businessForm.controls['businessEmail'].value ? 'ng-dirty ng-invalid' : ''" />
+          <label for="businessEmail">Business Email</label>
+        </p-floatlabel>
+
+        <p-floatlabel variant="on">
+          <input pInputText type="number" id="businessPhone" formControlName="businessPhone" autocomplete="off" class="w-full"
+            [class]="IsFormSubmitted && businessForm.controls['businessPhone'].invalid ? 'ng-dirty ng-invalid' : ''">
+          <label for="businessPhone">Business Phone</label>
+        </p-floatlabel>
+
+        <p-floatlabel variant="on">
+          <input pInputText type="number" id="businessmobile" formControlName="businessmobile" autocomplete="off" class="w-full"
+            [class]="IsFormSubmitted && businessForm.controls['businessmobile'].invalid ? 'ng-dirty ng-invalid' : ''">
+          <label for="businessmobile">Business Mobile</label>
+        </p-floatlabel>
+
+        <p-floatlabel variant="on">
+          <input pInputText type="text" id="abn" formControlName="abn" autocomplete="off" class="w-full"
+            [class]="IsFormSubmitted && businessForm.controls['abn'].invalid ? 'ng-dirty ng-invalid' : ''">
+          <label for="abn">ABN</label>
+        </p-floatlabel>
       </div>
 
-      <p-floatlabel variant="on">
-        <input pInputText id="customerName" formControlName="customerName" autocomplete="off"
-          [class]="IsFormSubmitted && !customerForm.controls['customerName'].value ? 'ng-dirty ng-invalid' : ''" />
-        <label for="customerName">Customer Name <span class="text-red-500">*</span></label>
-      </p-floatlabel>
+      <div class="flex my-5">
+        <p-divider>
+          <span class="text-xl text-gray">Address</span>
+        </p-divider>
+      </div>
 
-      <p-floatlabel variant="on">
-        <input pInputText id="email" formControlName="email" autocomplete="off"
-          [class]="IsFormSubmitted && !customerForm.controls['email'].value ? 'ng-dirty ng-invalid' : ''" />
-        <label for="email">Email Address</label>
-      </p-floatlabel>
+      <div class="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-6 mt-1">
+        <p-floatlabel variant="on" class="lg:col-span-3">
+          <input pInputText type="text" id="siteAddress" formControlName="siteAddress" autocomplete="off" class="w-full"
+            [class]="IsFormSubmitted && businessForm.controls['siteAddress'].invalid ? 'ng-dirty ng-invalid' : ''">
+          <label for="siteAddress">Site Address</label>
+        </p-floatlabel>
 
+        <p-floatlabel variant="on">
+          <input pInputText type="text" id="streetNo" formControlName="streetNo" autocomplete="off" class="w-full"
+            [class]="IsFormSubmitted && businessForm.controls['streetNo'].invalid ? 'ng-dirty ng-invalid' : ''">
+          <label for="streetNo">Street No</label>
+        </p-floatlabel>
+        <p-floatlabel variant="on" class="lg:col-span-2">
+          <input pInputText type="text" id="streetName" formControlName="streetName" autocomplete="off" class="w-full"
+            [class]="IsFormSubmitted && businessForm.controls['streetName'].invalid ? 'ng-dirty ng-invalid' : ''">
+          <label for="streetName">Street Name</label>
+        </p-floatlabel>
+        <p-floatlabel variant="on">
+          <input pInputText type="text" id="suburb" formControlName="suburb" autocomplete="off" class="w-full"
+            [class]="IsFormSubmitted && businessForm.controls['suburb'].invalid ? 'ng-dirty ng-invalid' : ''">
+          <label for="suburb">Suburb</label>
+        </p-floatlabel>
+        <p-floatlabel variant="on">
+          <input pInputText type="text" id="state" formControlName="state" autocomplete="off" class="w-full"
+            [class]="IsFormSubmitted && businessForm.controls['state'].invalid ? 'ng-dirty ng-invalid' : ''">
+          <label for="state">State </label>
+        </p-floatlabel>
+        <p-floatlabel variant="on">
+          <input pInputText type="number" id="postcode" formControlName="postcode" autocomplete="off" class="w-full"
+            [class]="IsFormSubmitted && businessForm.controls['postcode'].invalid ? 'ng-dirty ng-invalid' : ''">
+          <label for="postcode">Postcode </label>
+        </p-floatlabel>
+      </div>
 
-      <p-floatlabel variant="on">
-        <input pInputText type="number" id="phone" formControlName="phone" autocomplete="off" class="w-full"
-          [class]="IsFormSubmitted && customerForm.controls['phone'].invalid ? 'ng-dirty ng-invalid' : ''">
-        <label for="phone">Phone Number</label>
-      </p-floatlabel>
+      <div class="flex my-5">
+        <p-divider>
+          <span class="text-xl text-gray">Contacts</span>
+        </p-divider>
+      </div>
+      <div class="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-8 mt-1">
+     
+        <p-floatlabel variant="on">
+          <input pInputText id="contactName" formControlName="contactName" autocomplete="off"
+            [class]="IsFormSubmitted && !businessForm.controls['contactName'].value ? 'ng-dirty ng-invalid' : ''" />
+          <label for="contactName">Contact Name <span class="text-red-500">*</span></label>
+        </p-floatlabel>
 
-      <p-floatlabel variant="on">
-        <input pInputText type="number" id="mobile" formControlName="mobile" autocomplete="off" class="w-full"
-          [class]="IsFormSubmitted && customerForm.controls['mobile'].invalid ? 'ng-dirty ng-invalid' : ''">
-        <label for="mobile">Mobile Number</label>
-      </p-floatlabel>
+        <p-floatlabel variant="on">
+          <input pInputText id="contactEmail" formControlName="contactEmail" autocomplete="off"
+            [class]="IsFormSubmitted && !businessForm.controls['contactEmail'].value ? 'ng-dirty ng-invalid' : ''" />
+          <label for="contactEmail">Contact Email</label>
+        </p-floatlabel>
 
+        <p-floatlabel variant="on">
+          <input pInputText type="number" id="contactPhone" formControlName="contactPhone" autocomplete="off" class="w-full"
+            [class]="IsFormSubmitted && businessForm.controls['contactPhone'].invalid ? 'ng-dirty ng-invalid' : ''">
+          <label for="contactPhone">Contact Phone</label>
+        </p-floatlabel>
 
+        <p-floatlabel variant="on">
+          <input pInputText type="contactMobile" id="contactMobile" formControlName="contactMobile" autocomplete="off" class="w-full"
+            [class]="IsFormSubmitted && businessForm.controls['contactMobile'].invalid ? 'ng-dirty ng-invalid' : ''">
+          <label for="contactMobile"> Contact Mobile</label>
+        </p-floatlabel>
 
-      <p-floatlabel variant="on">
-        <input pInputText type="text" id="abn" formControlName="abn" autocomplete="off" class="w-full"
-          [class]="IsFormSubmitted && customerForm.controls['abn'].invalid ? 'ng-dirty ng-invalid' : ''">
-        <label for="abn">ABN</label>
-      </p-floatlabel>
+      </div>
 
+      <div class="card flex justify-end flex-wrap gap-4 mt-2">
+        <p-button type="submit" label="Save" styleClass="m-0" />
+      </div>
+    </form>
+  </div>
+
+  <div [ngClass]="{'hidden': value !== 1}">
+      <form (ngSubmit)="onSubmitindividual()" [formGroup]="individualForm">
+        <div class="grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 gap-8 mt-1">
+       
+          <p-floatlabel variant="on">
+            <input pInputText id="customerName" formControlName="customerName" autocomplete="off"
+              [class]="IsFormSubmitted && !individualForm.controls['customerName'].value ? 'ng-dirty ng-invalid' : ''" />
+            <label for="customerName">Customer Name <span class="text-red-500">*</span></label>
+          </p-floatlabel>
+  
+          <p-floatlabel variant="on">
+            <input pInputText id="customerEmail" formControlName="customerEmail" autocomplete="off"
+              [class]="IsFormSubmitted && !individualForm.controls['customerEmail'].value ? 'ng-dirty ng-invalid' : ''" />
+            <label for="customerEmail">Customer Email</label>
+          </p-floatlabel>
+  
+          <p-floatlabel variant="on">
+            <input pInputText type="number" id="phone" formControlName="phone" autocomplete="off" class="w-full"
+              [class]="IsFormSubmitted && individualForm.controls['phone'].invalid ? 'ng-dirty ng-invalid' : ''">
+            <label for="phone">Phone Number</label>
+          </p-floatlabel>
+  
+          <p-floatlabel variant="on">
+            <input pInputText type="number" id="mobile" formControlName="mobile" autocomplete="off" class="w-full"
+              [class]="IsFormSubmitted && individualForm.controls['mobile'].invalid ? 'ng-dirty ng-invalid' : ''">
+            <label for="mobile">Mobile Number</label>
+          </p-floatlabel>
+  
+          <p-floatlabel variant="on">
+            <input pInputText type="text" id="abn" formControlName="abn" autocomplete="off" class="w-full"
+              [class]="IsFormSubmitted && individualForm.controls['abn'].invalid ? 'ng-dirty ng-invalid' : ''">
+            <label for="abn">ABN</label>
+          </p-floatlabel>
+        </div>
+  
+        <div class="flex my-5">
+          <p-divider>
+            <span class="text-xl text-gray">Address</span>
+          </p-divider>
+        </div>
+  
+        <div class="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-6 mt-1">
+          <p-floatlabel variant="on" class="lg:col-span-3">
+            <input pInputText type="text" id="siteAddress" formControlName="siteAddress" autocomplete="off" class="w-full"
+              [class]="IsFormSubmitted && individualForm.controls['siteAddress'].invalid ? 'ng-dirty ng-invalid' : ''">
+            <label for="siteAddress">Site Address</label>
+          </p-floatlabel>
+  
+          <p-floatlabel variant="on">
+            <input pInputText type="text" id="streetNo" formControlName="streetNo" autocomplete="off" class="w-full"
+              [class]="IsFormSubmitted && individualForm.controls['streetNo'].invalid ? 'ng-dirty ng-invalid' : ''">
+            <label for="streetNo">Street No</label>
+          </p-floatlabel>
+          <p-floatlabel variant="on" class="lg:col-span-2">
+            <input pInputText type="text" id="streetName" formControlName="streetName" autocomplete="off" class="w-full"
+              [class]="IsFormSubmitted && individualForm.controls['streetName'].invalid ? 'ng-dirty ng-invalid' : ''">
+            <label for="streetName">Street Name</label>
+          </p-floatlabel>
+          <p-floatlabel variant="on">
+            <input pInputText type="text" id="suburb" formControlName="suburb" autocomplete="off" class="w-full"
+              [class]="IsFormSubmitted && individualForm.controls['suburb'].invalid ? 'ng-dirty ng-invalid' : ''">
+            <label for="suburb">Suburb</label>
+          </p-floatlabel>
+          <p-floatlabel variant="on">
+            <input pInputText type="text" id="state" formControlName="state" autocomplete="off" class="w-full"
+              [class]="IsFormSubmitted && individualForm.controls['state'].invalid ? 'ng-dirty ng-invalid' : ''">
+            <label for="state">State </label>
+          </p-floatlabel>
+          <p-floatlabel variant="on">
+            <input pInputText type="number" id="postcode" formControlName="postcode" autocomplete="off" class="w-full"
+              [class]="IsFormSubmitted && individualForm.controls['postcode'].invalid ? 'ng-dirty ng-invalid' : ''">
+            <label for="postcode">Postcode </label>
+          </p-floatlabel>
+        </div>
+  
+        <div class="card flex justify-end flex-wrap gap-4 mt-2">
+          <p-button type="submit" label="Save" styleClass="m-0" />
+        </div>
+      </form>
     </div>
-
-    <h2 class="text-lg font-semibold mt-4">Address</h2>
-    <hr class="mb-5">
-    <div class="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-6 mt-1">
-
-      <p-floatlabel variant="on" class="lg:col-span-3">
-        <input pInputText type="text" id="siteAddress" formControlName="siteAddress" autocomplete="off" class="w-full"
-          [class]="IsFormSubmitted && customerForm.controls['siteAddress'].invalid ? 'ng-dirty ng-invalid' : ''">
-        <label for="siteAddress">Site Address</label>
-      </p-floatlabel>
+  
 
 
-      <p-floatlabel variant="on">
-        <input pInputText type="text" id="streetNo" formControlName="streetNo" autocomplete="off" class="w-full"
-          [class]="IsFormSubmitted && customerForm.controls['streetNo'].invalid ? 'ng-dirty ng-invalid' : ''">
-        <label for="streetNo">Street No</label>
-      </p-floatlabel>
-      <p-floatlabel variant="on" class="lg:col-span-2">
-        <input pInputText type="text" id="streetName" formControlName="streetName" autocomplete="off" class="w-full"
-          [class]="IsFormSubmitted && customerForm.controls['streetName'].invalid ? 'ng-dirty ng-invalid' : ''">
-        <label for="streetName">Street Name</label>
-      </p-floatlabel>
-      <p-floatlabel variant="on">
-        <input pInputText type="text" id="suburb" formControlName="suburb" autocomplete="off" class="w-full"
-          [class]="IsFormSubmitted && customerForm.controls['suburb'].invalid ? 'ng-dirty ng-invalid' : ''">
-        <label for="suburb">Suburb</label>
-      </p-floatlabel>
-      <p-floatlabel variant="on">
-        <input pInputText type="text" id="state" formControlName="state" autocomplete="off" class="w-full"
-          [class]="IsFormSubmitted && customerForm.controls['state'].invalid ? 'ng-dirty ng-invalid' : ''">
-        <label for="state">State </label>
-      </p-floatlabel>
-      <p-floatlabel variant="on">
-        <input pInputText type="number" id="postcode" formControlName="postcode" autocomplete="off" class="w-full"
-          [class]="IsFormSubmitted && customerForm.controls['postcode'].invalid ? 'ng-dirty ng-invalid' : ''">
-        <label for="postcode">Postcode </label>
-      </p-floatlabel>
-    </div>
-
-
-    <div class="card flex justify-end flex-wrap gap-4 mt-2">
-      <p-button type="submit" label="Save" styleClass="m-0" />
-    </div>
-
-  </form>
 </div>

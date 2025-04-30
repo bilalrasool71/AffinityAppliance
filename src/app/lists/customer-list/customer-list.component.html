@@ -1,0 +1,91 @@
+<div class="p-4 shadow bg-white rounded-lg">
+  
+    <div class="flex justify-between items-center bg-gray-100 p-4 rounded-lg shadow-md mb-4">
+        <h1 class="text-2xl font-bold text-gray-600">CUSTOMER LIST</h1>
+        <p-button label="Add Customer" variant="text" [raised]="true" severity="info" />
+      </div>
+      
+      
+
+    <div class="flex items-center gap-2 my-5 ms-4">
+          <p-radioButton
+            name="status"
+            value="individual"
+            [(ngModel)]="selectedStatus"
+            inputId="individual"
+            class="text-blue-600"
+          ></p-radioButton>
+          <label for="individual" class="text-gray-700">Individual</label>
+  
+          <p-radioButton
+            name="status"
+            value="business"
+            [(ngModel)]="selectedStatus"
+            inputId="business"
+            class="ml-2 text-blue-600"
+          ></p-radioButton>
+          <label for="business" class="text-gray-700">Business</label>
+        </div>
+
+
+    <div class="flex justify-between items-center mb-4 ms-4">
+      <div class="flex items-center gap-4">
+    
+  
+        <div class="flex items-center gap-2">
+          <label class="text-gray-700">Show</label>
+          <p-dropdown
+            [options]="entriesOptions"
+            [(ngModel)]="selectedEntries"
+            placeholder="50"
+            styleClass="border border-gray-300 rounded"
+          ></p-dropdown>
+          <span class="text-gray-700">Entries</span>
+        </div>
+      </div>
+  
+      <div class="w-64">
+        <p-iconfield>
+          <p-inputicon styleClass="pi pi-search" />
+          <input type="text" pInputText placeholder="Search" />
+      </p-iconfield>
+      </div>
+    </div>
+  
+    <p-table
+    [value]="customers"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    styleClass="p-datatable-striped p-datatable-sm"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <!-- <th>TYPE</th> -->
+        <th>NAME</th>
+        <th>EMAIL</th>
+        <th>PHONE</th>
+        <th>MOBILE</th>
+        <th>ABN</th>
+        <th>ADDRESS</th>
+        <!-- <th>S-NAME</th> -->
+        <!-- <th>STATE</th> -->
+        <!-- <th>POSTCODE</th> -->
+      </tr>
+    </ng-template>
+  
+    <ng-template pTemplate="body" let-customer>
+      <tr>
+        <!-- <td>{{ customer.customerType }}</td> -->
+        <td class=" text-blue-400">{{ customer.customerName }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.phone }}</td>
+        <td>{{ customer.mobile }}</td>
+        <td>{{ customer.abn }}</td>
+        <td>{{ customer.siteAddress }} ,  {{ customer.state }}, {{ customer.streetName }}, {{ customer.postcode }}</td>
+        <!-- <td>{{ customer.streetName }}</td> -->
+        <!-- <td>{{ customer.state }}</td> -->
+        <!-- <td>{{ customer.postcode }}</td> -->
+      </tr>
+    </ng-template>
+  </p-table>
+  
+  </div>

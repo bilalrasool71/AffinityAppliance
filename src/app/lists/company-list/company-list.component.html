@@ -1,0 +1,89 @@
+<div class="p-4 shadow bg-white rounded-lg">
+  
+    <div class="flex justify-between items-center bg-gray-100 p-4 rounded-lg shadow-md mb-4">
+        <h1 class="text-2xl font-bold text-gray-600">COMPANY LIST</h1>
+        <p-button label="Add Company" variant="text" [raised]="true" severity="info" />
+      </div>
+      
+      
+
+    <div class="flex items-center gap-2 my-5 ms-4">
+          <p-radioButton
+            name="status"
+            value="Active"
+            [(ngModel)]="selectedStatus"
+            inputId="active"
+            class="text-blue-600"
+          ></p-radioButton>
+          <label for="active" class="text-gray-700">Active</label>
+  
+          <p-radioButton
+            name="status"
+            value="Inactive"
+            [(ngModel)]="selectedStatus"
+            inputId="inactive"
+            class="ml-2 text-blue-600"
+          ></p-radioButton>
+          <label for="inactive" class="text-gray-700">Inactive</label>
+        </div>
+
+
+    <div class="flex justify-between items-center mb-4 ms-4">
+      <div class="flex items-center gap-4">
+    
+  
+        <div class="flex items-center gap-2">
+          <label class="text-gray-700">Show</label>
+          <p-dropdown
+            [options]="entriesOptions"
+            [(ngModel)]="selectedEntries"
+            placeholder="50"
+            styleClass="border border-gray-300 rounded"
+          ></p-dropdown>
+          <span class="text-gray-700">Entries</span>
+        </div>
+      </div>
+  
+      <div class="w-64">
+        <p-iconfield>
+          <p-inputicon styleClass="pi pi-search" />
+          <input type="text" pInputText placeholder="Search" />
+      </p-iconfield>
+      </div>
+    </div>
+  
+    <p-table
+    [value]="companies"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    styleClass="p-datatable-striped p-datatable-sm"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Company Name</th>
+        <th>Company Code</th>
+        <th>Email</th>
+        <th>Type</th>
+        <th>State</th>
+        <th>Time Zone</th>
+        <th>Phone</th>
+        <th>Color</th>
+      </tr>
+    </ng-template>
+  
+    <ng-template pTemplate="body" let-company>
+      <tr>
+        <td class="text-blue-400">{{ company.companyName }}</td>
+        <td>{{ company.companyCode }}</td>
+        <td>{{ company.email }}</td>
+        <td>{{ company.type }}</td>
+        <td>{{ company.state }}</td>
+        <td>{{ company.timeZone }}</td>
+        <td>{{ company.phone }}</td>
+        <td>
+          <div [style.background]="company.color" class="w-5 h-5 rounded-full border"></div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  
+  </div>

@@ -49,7 +49,7 @@ export class SupportFormComponent {
       image: [''],
       date:[''],
       area: ['', Validators.required],
-      descrption: [''],
+      description: [''],
       url: ['', [Validators.required, Validators.pattern('https?://.+')]], 
     });
   }

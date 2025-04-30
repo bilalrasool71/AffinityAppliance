@@ -43,7 +43,7 @@ export class AddCompanyComponent {
       mobile: ['', Validators.required],
       state: ['', [Validators.required]], 
       color: ['black'],
-      Password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       website: ['', Validators.pattern('https?://.+')],
       description: [''],
     });

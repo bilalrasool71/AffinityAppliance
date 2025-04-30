@@ -6,8 +6,8 @@
 
   <form (ngSubmit)="onSubmit()" [formGroup]="customerForm">
     <div class="grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 gap-8 mt-1">
-      <div class="mb-0 gap-8">
-        <label class="block font-medium  text-gray-700 mb-2">Customer Type:</label>
+      <div class="flex mb-0 gap-8">
+        <label class="flex font-small text-gray-700">Customer Type:</label>
         <div class="flex items-center gap-3">
           <p-radiobutton name="resellerType" value="regular" formControlName="resellerType" inputId="regular" />
           <label for="regular">Regular</label>
@@ -49,8 +49,14 @@
 
     </div>
 
-    <h2 class="text-lg font-semibold mt-4">Reseller Address</h2>
-    <hr class="mb-5">
+
+    <div class="flex my-5">
+      <p-divider>
+        <span class="text-xl text-gray">Reseller Address</span>
+      </p-divider>
+    </div>
+    
+    
     <div class="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-6 mt-1">
 
       <p-floatlabel variant="on" class="lg:col-span-3">
