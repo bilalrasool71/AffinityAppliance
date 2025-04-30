@@ -42,12 +42,9 @@ export class LoginComponent {
     if (this.ForgotPasswordForm.invalid) {}
     else {
       console.log('Password reset requested for:', this.ForgotPasswordForm.value.email);
-      // Here you would typically call a service to handle the password reset
-      // For example: this.authService.requestPasswordReset(this.ForgotPasswordForm.value.email)
-      
-      // Show success message or redirect as needed
+  
       alert('Password reset instructions have been sent to your email if it exists in our system.');
-      this.toggleForgotPassword(); // Return to login form
+      this.toggleForgotPassword(); 
     }
   }
 

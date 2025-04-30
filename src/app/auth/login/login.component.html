@@ -7,7 +7,7 @@
             {{ showForgotPassword ? 'Enter your email to reset password' : 'Welcome back to Affinity Appliance!' }}
         </p>
 
-        <!-- Login Form -->
+   
         <form *ngIf="!showForgotPassword" (ngSubmit)="OnSubmit()" [formGroup]="LoginForm">
             <div class="grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 gap-3 my-4">
                 <p-floatlabel variant="in">
@@ -31,7 +31,7 @@
             </div>
         </form>
 
-        <!-- Forgot Password Form -->
+       
         <form *ngIf="showForgotPassword" (ngSubmit)="OnForgotPasswordSubmit()" [formGroup]="ForgotPasswordForm">
             <div class="grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 gap-3 my-4">
                 <p-floatlabel variant="in">

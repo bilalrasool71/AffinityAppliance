@@ -127,7 +127,7 @@
   <!-- ........................................customer form End........................... -->
   <div [ngClass]="{'hidden': value !== 1}">
     <div class="p-4 max-w-5xl">
-      <!-- Premises Frontage/Location Photo -->
+ 
       <div class="mb-6">
         <h2 class="text-lg font-medium mb-2 text-gray-700">Premises Frontage/Location Photo</h2>
         <div class="mb-2">
@@ -151,11 +151,11 @@
           </p-fileUpload>
         </div>
         
-        <!-- Preview area for frontage photos -->
+ 
         <div *ngIf="frontagePhotos.length > 0" class="flex flex-wrap gap-2 mt-6">
           <div *ngFor="let file of frontagePhotos" class="relative w-20 h-20">
             
-            <!-- Overlay Buttons ABOVE image -->
+          
             <div class="absolute -top-7 right-0 flex space-x-1 z-10">
               <button 
                 pButton 
@@ -171,7 +171,7 @@
               ></button>
             </div>
         
-            <!-- Image -->
+     
             <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden">
               <img [src]="file.objectURL || ''" class="w-full h-full object-cover" />
             </div>
@@ -189,7 +189,7 @@
         </p-floatLabel>
       </div>
       
-      <!-- Utility Bill Photo (all pages) -->
+  
       <div class="mb-6">
         <h2 class="text-lg font-medium mb-2 text-gray-700">Utility Bill Photo (all pages)</h2>
         <div class="mb-2">
@@ -214,12 +214,11 @@
         </div>
      
         
-        
-        <!-- Preview area for utility bill photos -->
+       
         <div *ngIf="frontagePhotos.length > 0" class="flex flex-wrap gap-2 mt-6">
           <div *ngFor="let file of frontagePhotos" class="relative w-20 h-20">
             
-            <!-- Overlay Buttons ABOVE image -->
+       
             <div class="absolute -top-7 right-0 flex space-x-1 z-10">
               <button 
                 pButton 
@@ -234,8 +233,7 @@
             
               ></button>
             </div>
-        
-            <!-- Image -->
+  
             <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden">
               <img [src]="file.objectURL || ''" class="w-full h-full object-cover" />
             </div>
@@ -253,7 +251,7 @@
         </p-floatLabel>
       </div>
       
-      <!-- Save & Next Button -->
+   
       <div class="flex my-5">
         <p-button type="button" label="Save & Next" (click)="value = 2"></p-button>
       </div>
