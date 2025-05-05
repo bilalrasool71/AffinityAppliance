@@ -2,6 +2,9 @@
 @use "tailwindcss";
 @import "primeicons/primeicons.css";
 
+
+
+
 @font-face {
     font-family: 'Outfit';
     src: url('../public/fonts/outfit/Outfit-Regular.ttf') format('truetype');
@@ -19,3 +22,9 @@ body {
 .p-select, .p-inputtext, .p-floatlabel, .p-button, .p-autocomplete, .p-password {
     width: 100%;
 }
+
+
+// th{
+//     background-color: #a3a3a3 !important;
+//     color: white !important;
+// }

@@ -12,6 +12,19 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { DividerModule } from 'primeng/divider';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SelectModule } from 'primeng/select';
+import { DropdownModule } from 'primeng/dropdown';
+import { EditorModule } from 'primeng/editor';
+import { ColorPickerModule } from 'primeng/colorpicker';
+import { TabsModule } from 'primeng/tabs';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { InputIconModule } from 'primeng/inputicon';
+import { HttpClientModule } from '@angular/common/http';
+import { FileUploadModule } from 'primeng/fileupload';
+import { CalendarModule } from 'primeng/calendar';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { TableModule } from 'primeng/table';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 
 
@@ -25,7 +38,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   exports: [
     CommonModule,
-    MenubarModule, 
+    MenubarModule,
     AvatarModule,
     ButtonModule,
     InputTextModule,
@@ -35,7 +48,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ButtonGroupModule,
     DividerModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SelectModule,
+    DropdownModule,
+    EditorModule,
+    ColorPickerModule,
+    TabsModule,
+    RadioButtonModule,
+    InputIconModule,
+    HttpClientModule,
+    FileUploadModule,
+    CalendarModule,
+    SplitButtonModule,
+    TableModule,
+    InputNumberModule,
   ]
 })
 export class UtilitiesModule { }

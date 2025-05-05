@@ -1,43 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { CommonModule } from '@angular/common';
-import { InputTextModule } from 'primeng/inputtext';
-import { PasswordModule } from 'primeng/password';
-import { ColorPickerModule } from 'primeng/colorpicker';
-import { CheckboxModule } from 'primeng/checkbox';
-import { DropdownModule } from 'primeng/dropdown';
-import { EditorModule } from 'primeng/editor';
-import { SelectModule } from 'primeng/select';
-import { InputIconModule } from 'primeng/inputicon';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { UtilitiesModule } from '../../core/utilities/utilities/utilities.module';
-import { CalendarModule } from 'primeng/calendar';
-import { TableModule } from 'primeng/table';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { SplitButtonModule } from 'primeng/splitbutton';
+
 
 @Component({
   selector: 'app-create-quotation',
   standalone: true,
   imports: [
     UtilitiesModule,
-    SplitButtonModule,
-    SelectModule,
-    CommonModule,
-    ReactiveFormsModule,
-    DropdownModule,
-    EditorModule,
-    InputTextModule,
-    PasswordModule,
-    ColorPickerModule,
-    CheckboxModule,
-    CalendarModule,
-    ButtonModule,
-    RadioButtonModule,
-    InputIconModule,
-    TableModule,
-    InputNumberModule
+ 
   ],
   templateUrl: './create-quotation.component.html',
   styleUrl: './create-quotation.component.scss'
@@ -47,7 +18,9 @@ export class CreateQuotationComponent implements OnInit {
   IsFormSubmitted: boolean = false;
   productList: any[] = [];
   editIndex: number = -1;
-
+  totalAmount: number = 0;
+  gstamount: number = 0;
+  totalWithGST: number = 0;
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -132,7 +105,7 @@ export class CreateQuotationComponent implements OnInit {
         amount: 0
       });
     }
-
+   this.totalsCalculation()
   }
 
   onEdit(index: number) {
@@ -147,6 +120,7 @@ export class CreateQuotationComponent implements OnInit {
       unitPrice: product.unitPrice,
       amount: product.amount
     });
+    this.totalsCalculation()
   }
 
   removeProduct(index: number) {
@@ -155,6 +129,7 @@ export class CreateQuotationComponent implements OnInit {
       this.editIndex = -1;
       this.resetCurrentForm();
     }
+    this.totalsCalculation()
   }
 
   resetCurrentForm() {
@@ -212,5 +187,17 @@ export class CreateQuotationComponent implements OnInit {
   ];
 
 
+totalsCalculation() {
+    let total = 0;
+    this.productList.forEach(product => {
+      total += product.amount;
+    });
+    this.totalAmount = total;
+    console.log('Total:', total);
+     this.gstamount = this.quotationForm.get('gst')?.value || 0;
+    this.totalWithGST = +total + +this.gstamount;
+    console.log('Total with GST:', this.totalWithGST);
+
+  }
 
 }

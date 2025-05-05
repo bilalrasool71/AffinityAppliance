@@ -1,40 +1,15 @@
 // add-customer.component.ts
 import { Component } from '@angular/core';
 import { UtilitiesModule } from '../../core/utilities/utilities/utilities.module';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { DropdownModule } from 'primeng/dropdown';
-import { EditorModule } from 'primeng/editor';
-import { InputTextModule } from 'primeng/inputtext';
-import { PasswordModule } from 'primeng/password';
-import { ColorPickerModule } from 'primeng/colorpicker';
-import { CheckboxModule } from 'primeng/checkbox';
-import { ButtonModule } from 'primeng/button';
-import { CommonModule } from '@angular/common';
-import { SelectModule } from 'primeng/select';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { InputIconModule } from 'primeng/inputicon';
-import { TabsModule } from 'primeng/tabs';
-import { DividerModule } from 'primeng/divider'; // Add this for divider
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-add-customer',
   standalone: true, // Update to standalone component
   imports: [
     UtilitiesModule,
-    SelectModule,
-    TabsModule,
-    CommonModule,
-    ReactiveFormsModule,
-    DropdownModule,
-    EditorModule,
-    InputTextModule,
-    PasswordModule,
-    ColorPickerModule,
-    CheckboxModule,
-    ButtonModule,
-    RadioButtonModule,
-    InputIconModule,
-    DividerModule // Add this for divider
+ 
   ],
   templateUrl: './add-customer.component.html'
 })

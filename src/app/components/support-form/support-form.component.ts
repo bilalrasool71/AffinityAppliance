@@ -1,36 +1,12 @@
 import { Component } from '@angular/core';
 import { UtilitiesModule } from '../../core/utilities/utilities/utilities.module';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { DropdownModule } from 'primeng/dropdown';
-import { EditorModule } from 'primeng/editor';
-import { InputTextModule } from 'primeng/inputtext';
-import { PasswordModule } from 'primeng/password';
-import { ColorPickerModule } from 'primeng/colorpicker';
-import { CheckboxModule } from 'primeng/checkbox';
-import { ButtonModule } from 'primeng/button';
-import { CommonModule } from '@angular/common';
-import { SelectModule } from 'primeng/select';
-import { FileUploadModule } from 'primeng/fileupload';
-import { HttpClientModule } from '@angular/common/http';
-import { CalendarModule } from 'primeng/calendar';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-support-form',
   imports: [
-    HttpClientModule,
      UtilitiesModule,
-     SelectModule,
-     CommonModule,
-     ReactiveFormsModule,
-     DropdownModule,
-     EditorModule,
-     InputTextModule,
-     PasswordModule,
-     ColorPickerModule,
-     CheckboxModule,
-     ButtonModule,
-     FileUploadModule,
-     CalendarModule
   ],
   templateUrl: './support-form.component.html',
   styleUrl: './support-form.component.scss'

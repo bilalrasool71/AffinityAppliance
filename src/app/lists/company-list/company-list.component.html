@@ -54,36 +54,39 @@
   
     <p-table
     [value]="companies"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    styleClass="p-datatable-striped p-datatable-sm"
+    [tableStyle]="{ 'min-width': '100%' }"
+    styleClass="p-datatable-striped p-datatable-sm w-full"
+    class="overflow-x-auto block"
   >
     <ng-template pTemplate="header">
       <tr>
-        <th>Company Name</th>
-        <th>Company Code</th>
-        <th>Email</th>
-        <th>Type</th>
-        <th>State</th>
-        <th>Time Zone</th>
-        <th>Phone</th>
-        <th>Color</th>
+        <th class="whitespace-nowrap">Company Name</th>
+        <th class="whitespace-nowrap">Company Code</th>
+        <th class="whitespace-nowrap">Email</th>
+        <th class="whitespace-nowrap">Type</th>
+        <th class="whitespace-nowrap">State</th>
+        <th class="whitespace-nowrap">Time Zone</th>
+        <th class="whitespace-nowrap">Phone</th>
+        <th class="whitespace-nowrap">Color</th>
       </tr>
     </ng-template>
   
     <ng-template pTemplate="body" let-company>
       <tr>
-        <td class="text-blue-400">{{ company.companyName }}</td>
-        <td>{{ company.companyCode }}</td>
-        <td>{{ company.email }}</td>
-        <td>{{ company.type }}</td>
-        <td>{{ company.state }}</td>
-        <td>{{ company.timeZone }}</td>
-        <td>{{ company.phone }}</td>
+        <td class="text-blue-400 whitespace-nowrap">{{ company.companyName }}</td>
+        <td class="whitespace-nowrap">{{ company.companyCode }}</td>
+        <td class="whitespace-nowrap">{{ company.email }}</td>
+        <td class="whitespace-nowrap">{{ company.type }}</td>
+        <td class="whitespace-nowrap">{{ company.state }}</td>
+        <td class="whitespace-nowrap">{{ company.timeZone }}</td>
+        <td class="whitespace-nowrap">{{ company.phone }}</td>
         <td>
           <div [style.background]="company.color" class="w-5 h-5 rounded-full border"></div>
         </td>
       </tr>
     </ng-template>
   </p-table>
+  
+  
   
   </div>

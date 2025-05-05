@@ -6,7 +6,7 @@
 
   <form (ngSubmit)="onSubmit()" [formGroup]="customerForm">
     <div class="grid lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 gap-8 mt-1">
-      <div class="flex mb-0 gap-8">
+      <!-- <div class="flex mb-0 gap-8">
         <label class="flex font-small text-gray-700">Customer Type:</label>
         <div class="flex items-center gap-3">
           <p-radiobutton name="resellerType" value="regular" formControlName="resellerType" inputId="regular" />
@@ -19,18 +19,18 @@
           <p-radiobutton name="resellerType" value="new" formControlName="resellerType" inputId="new" />
           <label for="new">New</label>
         </div>
-      </div>
+      </div> -->
 
       <p-floatlabel variant="on">
         <input pInputText id="resellerName" formControlName="resellerName" autocomplete="off"
           [class]="IsFormSubmitted && !customerForm.controls['resellerName'].value ? 'ng-dirty ng-invalid' : ''" />
-        <label for="resellerName">Reseller Name <span class="text-red-500">*</span></label>
+        <label for="resellerName">Reseller Business Name <span class="text-red-500">*</span></label>
       </p-floatlabel>
 
       <p-floatlabel variant="on">
         <input pInputText id="email" formControlName="email" autocomplete="off"
           [class]="IsFormSubmitted && !customerForm.controls['email'].value ? 'ng-dirty ng-invalid' : ''" />
-        <label for="email">Email Address</label>
+        <label for="email">Business Email</label>
       </p-floatlabel>
 
 
@@ -43,7 +43,7 @@
       <p-floatlabel variant="on">
         <input pInputText type="number" id="gst" formControlName="gst" autocomplete="off" class="w-full"
           [class]="IsFormSubmitted && customerForm.controls['gst'].invalid ? 'ng-dirty ng-invalid' : ''">
-        <label for="gst">GST Number</label>
+        <label for="gst">ABN</label>
       </p-floatlabel>
 
 
@@ -63,7 +63,7 @@
         <input pInputText type="text" id="officeAddress" formControlName="officeAddress" autocomplete="off"
           class="w-full"
           [class]="IsFormSubmitted && customerForm.controls['officeAddress'].invalid ? 'ng-dirty ng-invalid' : ''">
-        <label for="officeAddress">Office Address</label>
+        <label for="officeAddress">Business Address</label>
       </p-floatlabel>
 
 

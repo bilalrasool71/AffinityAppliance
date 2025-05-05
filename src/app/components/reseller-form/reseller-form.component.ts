@@ -1,33 +1,11 @@
 import { Component } from '@angular/core';
 import { UtilitiesModule } from '../../core/utilities/utilities/utilities.module';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { DropdownModule } from 'primeng/dropdown';
-import { EditorModule } from 'primeng/editor';
-import { InputTextModule } from 'primeng/inputtext';
-import { Password, PasswordModule } from 'primeng/password';
-import { ColorPickerModule } from 'primeng/colorpicker';
-import { CheckboxModule } from 'primeng/checkbox';
-import { ButtonModule } from 'primeng/button';
-import { CommonModule } from '@angular/common';
-import { SelectModule } from 'primeng/select';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { InputIconModule } from 'primeng/inputicon';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-reseller-form',
   imports: [
     UtilitiesModule,
-        SelectModule,
-        CommonModule,
-        ReactiveFormsModule,
-        DropdownModule,
-        EditorModule,
-        InputTextModule,
-        PasswordModule,
-        ColorPickerModule,
-        CheckboxModule,
-        ButtonModule,
-        RadioButtonModule,
-        InputIconModule 
 ],
   templateUrl: './reseller-form.component.html',
   styleUrl: './reseller-form.component.scss'

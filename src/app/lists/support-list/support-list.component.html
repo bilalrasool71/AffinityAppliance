@@ -1,1 +1,92 @@
-<p>support-list works!</p>
+<div class="p-4 shadow bg-white rounded-lg">
+  
+    <div class="flex justify-between items-center bg-gray-100 p-4 rounded-lg shadow-md mb-4">
+        <h1 class="text-2xl font-bold text-gray-600">SUPPORT LIST</h1>
+        <p-button label="Add Support" variant="text" [raised]="true" severity="info" />
+      </div>
+      
+      
+
+    <div class="flex items-center gap-2 my-5 ms-4">
+          <p-radioButton
+            name="status"
+            value="Active"
+            [(ngModel)]="selectedStatus"
+            inputId="active"
+            class="text-blue-600"
+          ></p-radioButton>
+          <label for="active" class="text-gray-700">Active</label>
+  
+          <p-radioButton
+            name="status"
+            value="Inactive"
+            [(ngModel)]="selectedStatus"
+            inputId="inactive"
+            class="ml-2 text-blue-600"
+          ></p-radioButton>
+          <label for="inactive" class="text-gray-700">Inactive</label>
+        </div>
+
+
+    <div class="flex justify-between items-center mb-4 ms-4">
+      <div class="flex items-center gap-4">
+    
+  
+        <div class="flex items-center gap-2">
+          <label class="text-gray-700">Show</label>
+          <p-dropdown
+            [options]="entriesOptions"
+            [(ngModel)]="selectedEntries"
+            placeholder="50"
+            styleClass="border border-gray-300 rounded"
+          ></p-dropdown>
+          <span class="text-gray-700">Entries</span>
+        </div>
+      </div>
+  
+      <div class="w-64">
+        <p-iconfield>
+          <p-inputicon styleClass="pi pi-search" />
+          <input type="text" pInputText placeholder="Search" />
+      </p-iconfield>
+      </div>
+    </div>
+  
+    <p-table
+    [value]="bugs"
+    [tableStyle]="{ 'min-width': '100%' }"
+    styleClass="p-datatable-striped p-datatable-sm w-full"
+    class="overflow-x-auto block"
+  >
+    <ng-template pTemplate="header">
+    <tr class="">
+      <th class="whitespace-nowrap text-white ">Priority</th>
+      <th class="whitespace-nowrap text-white ">Assignee</th>
+      <th class="whitespace-nowrap text-white ">Image</th>
+      <th class="whitespace-nowrap text-white ">Date</th>
+      <th class="whitespace-nowrap text-white ">Area</th>
+      <th class="whitespace-nowrap text-white ">Description</th>
+      <th class="whitespace-nowrap text-white ">URL</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-bug>
+    <tr>
+      <td class="text-blue-400 whitespace-nowrap">{{ bug.priority }}</td>
+      <td class="text-blue-400 whitespace-nowrap">{{ bug.assignee }}</td>
+      <td class="whitespace-nowrap">
+        <img [src]="bug.image" alt="Bug image" class="w-10 h-10 object-cover" />
+      </td>
+      <td class="whitespace-nowrap">{{ bug.date }}</td>
+      <td class="whitespace-nowrap">{{ bug.area }}</td>
+      <td class="whitespace-nowrap">{{ bug.description }}</td>
+      <td class="whitespace-nowrap">
+        <a [href]="bug.url" target="_blank" class="text-blue-400 underline">View Details</a>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+  
+  
+  
+  </div>

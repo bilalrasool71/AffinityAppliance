@@ -80,7 +80,8 @@
       </p-floatlabel>
 
       <p-floatlabel variant="on">
-        <input pInputText type="text" id="gst" formControlName="gst" autocomplete="off" class="w-full"
+        <input pInputText type="text" id="gst" formControlName="gst" autocomplete="off" class="w-full" 
+        (input)="totalsCalculation()"
           [class]="IsFormSubmitted && quotationForm.controls['gst'].invalid ? 'ng-dirty ng-invalid' : ''">
         <label for="gst">GST</label>
       </p-floatlabel>
@@ -215,9 +216,9 @@
 
       <div class="w-3/12 shadow p-4 bg-white rounded-lg">
         <p-table [value]="[
-        { label: 'Total', value: 1041 },
-        { label: 'GST', value: 1254 },
-        { label: 'Total Amount', value: 2295 }
+         { label: 'Total', value: totalAmount | number:'1.2-2' },
+      { label: 'GST', value: gstamount | number:'1.2-2' },
+      { label: 'G.Total', value: totalWithGST | number:'1.2-2' }
       ]">
           <ng-template pTemplate="body" let-rowData>
             <tr>

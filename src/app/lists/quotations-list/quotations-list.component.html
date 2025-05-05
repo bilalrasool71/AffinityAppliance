@@ -1,1 +1,103 @@
-<p>quotations-list works!</p>
+<div class="p-4 shadow bg-white rounded-lg">
+  
+    <div class="flex justify-between items-center bg-gray-100 p-4 rounded-lg shadow-md mb-4">
+        <h1 class="text-2xl font-bold text-gray-600">QUOTATION LIST</h1>
+        <p-button label="Add Quotation " variant="text" [raised]="true" severity="info" />
+      </div>
+      
+      
+
+    <div class="flex items-center gap-2 my-5 ms-4">
+          <p-radioButton
+            name="status"
+            value="Active"
+            [(ngModel)]="selectedStatus"
+            inputId="active"
+            class="text-blue-600"
+          ></p-radioButton>
+          <label for="active" class="text-gray-700">Active</label>
+  
+          <p-radioButton
+            name="status"
+            value="Inactive"
+            [(ngModel)]="selectedStatus"
+            inputId="inactive"
+            class="ml-2 text-blue-600"
+          ></p-radioButton>
+          <label for="inactive" class="text-gray-700">Inactive</label>
+        </div>
+
+
+    <div class="flex justify-between items-center mb-4 ms-4">
+      <div class="flex items-center gap-4">
+    
+  
+        <div class="flex items-center gap-2">
+          <label class="text-gray-700">Show</label>
+          <p-dropdown
+            [options]="entriesOptions"
+            [(ngModel)]="selectedEntries"
+            placeholder="50"
+            styleClass="border border-gray-300 rounded"
+          ></p-dropdown>
+          <span class="text-gray-700">Entries</span>
+        </div>
+      </div>
+  
+      <div class="w-64">
+        <p-iconfield>
+          <p-inputicon styleClass="pi pi-search" />
+          <input type="text" pInputText placeholder="Search" />
+      </p-iconfield>
+      </div>
+    </div>
+  
+    <p-table [value]="quotations" [tableStyle]="{ 'min-width': '100%' }"
+    styleClass="p-datatable-striped p-datatable-sm w-full" class="overflow-x-auto block">
+    <ng-template pTemplate="header">
+      <tr>
+       <th class="whitespace-nowrap">Ex Job</th>
+       <th class="whitespace-nowrap">Job Type</th>
+       <th class="whitespace-nowrap">Customer</th>
+       <th class="whitespace-nowrap">Quotation Date</th>
+       <th class="whitespace-nowrap">Valid For</th>
+       <th class="whitespace-nowrap">Site Address</th>
+       <th class="whitespace-nowrap">Reference</th>
+       <th class="whitespace-nowrap">Valid Until</th>
+       <th class="whitespace-nowrap">GST</th>
+       <th class="whitespace-nowrap">Logo Template</th>
+       <th class="whitespace-nowrap">Send Reminders</th>
+       <th class="whitespace-nowrap">New Job</th>
+       <th class="whitespace-nowrap">Agreement</th>
+       <th class="whitespace-nowrap">Payment Required</th>
+       <th class="whitespace-nowrap">Receive Notifications</th>
+       <th class="whitespace-nowrap">Description</th>
+      </tr>
+    </ng-template>
+  
+    <ng-template pTemplate="body" let-job>
+      <tr>
+        <td class="whitespace-nowrap">{{ job.exJob }}</td>
+        <td class="whitespace-nowrap">{{ job.jobType }}</td>
+        <td class="whitespace-nowrap">{{ job.customer }}</td>
+        <td class="whitespace-nowrap">{{ job.quotationDate }}</td>
+        <td class="whitespace-nowrap">{{ job.validfor }}</td>
+        <td class="whitespace-nowrap">{{ job.siteAddress }}</td>
+        <td class="whitespace-nowrap">{{ job.reference }}</td>
+        <td class="whitespace-nowrap">{{ job.validuntil }}</td>
+        <td class="whitespace-nowrap">{{ job.gst }}</td>
+        <td class="whitespace-nowrap">{{ job.logoTemplate }}</td>
+        <td class="whitespace-nowrap">{{ job.sendReminders }}</td>
+        <td class="whitespace-nowrap">{{ job.newJob }}</td>
+        <td class="whitespace-nowrap">{{ job.agreement }}</td>
+        <td class="whitespace-nowrap">{{ job.paymentRequired }}</td>
+        <td class="whitespace-nowrap">{{ job.receivenotifications }}</td>
+        <td class="whitespace-nowrap">{{ job.text }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  
+  
+  
+  
+  </div>

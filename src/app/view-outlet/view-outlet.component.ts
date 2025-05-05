@@ -117,12 +117,12 @@ export class ViewOutletComponent {
           routerLink: ['/app/add-assessment'],
           routerLinkActive: 'active'
         },
-        {
-          label: 'Assessment List',
-          icon: 'pi pi-list',
-          routerLink: ['/lists/quotations-list'],
-          routerLinkActive: 'active'
-        }
+        // {
+        //   label: 'Assessment List',
+        //   icon: 'pi pi-list',
+        //   routerLink: ['/lists/quotations-list'],
+        //   routerLinkActive: 'active'
+        // }
       ]
     },
     {

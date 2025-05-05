@@ -1,20 +1,10 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ButtonModule } from 'primeng/button';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { FloatLabelModule } from 'primeng/floatlabel';
-import { InputTextModule } from 'primeng/inputtext';
-import { SelectModule } from 'primeng/select';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { FileUploadModule } from 'primeng/fileupload';
-import { HttpClientModule } from '@angular/common/http';
-
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { UtilitiesModule } from '../../core/utilities/utilities/utilities.module';
 
 @Component({
   selector: 'app-add-assessment',
-  imports: [CommonModule, ButtonModule,ButtonModule,ReactiveFormsModule,FloatLabelModule,InputTextModule,SelectModule,
-    RadioButtonModule,InputNumberModule,FileUploadModule,HttpClientModule ],
+  imports: [ UtilitiesModule ],
   templateUrl: './add-assessment.component.html',
   styleUrl: './add-assessment.component.scss'
 })

@@ -1,45 +1,32 @@
-<div class="p-4 shadow bg-white rounded-lg">
-  
+
+  <div class="p-4 shadow bg-white rounded-lg">
+
     <div class="flex justify-between items-center bg-gray-100 p-4 rounded-lg shadow-md mb-4">
-        <h1 class="text-2xl font-bold text-gray-600">USERS LIST</h1>
-        <p-button label="Add User" variant="text" [raised]="true" severity="info" />
-      </div>
-      
-      
-
-    <div class="flex items-center gap-2 my-5 ms-4">
-          <p-radioButton
-            name="status"
-            value="Active"
-            [(ngModel)]="selectedStatus"
-            inputId="active"
-            class="text-blue-600"
-          ></p-radioButton>
-          <label for="active" class="text-gray-700">Active</label>
+      <h1 class="text-2xl font-bold text-gray-600">USERS LIST</h1>
+      <p-button label="Add User" variant="text" [raised]="true" severity="info" />
+    </div>
   
-          <p-radioButton
-            name="status"
-            value="Inactive"
-            [(ngModel)]="selectedStatus"
-            inputId="inactive"
-            class="ml-2 text-blue-600"
-          ></p-radioButton>
-          <label for="inactive" class="text-gray-700">Inactive</label>
-        </div>
-
-
+  
+  
+    <div class="flex items-center gap-2 my-5 ms-4">
+      <p-radioButton name="status" value="Active" [(ngModel)]="selectedStatus" inputId="active"
+        class="text-blue-600"></p-radioButton>
+      <label for="active" class="text-gray-700">Active</label>
+  
+      <p-radioButton name="status" value="Inactive" [(ngModel)]="selectedStatus" inputId="inactive"
+        class="ml-2 text-blue-600"></p-radioButton>
+      <label for="inactive" class="text-gray-700">Inactive</label>
+    </div>
+  
+  
     <div class="flex justify-between items-center mb-4 ms-4">
       <div class="flex items-center gap-4">
-    
+  
   
         <div class="flex items-center gap-2">
           <label class="text-gray-700">Show</label>
-          <p-dropdown
-            [options]="entriesOptions"
-            [(ngModel)]="selectedEntries"
-            placeholder="50"
-            styleClass="border border-gray-300 rounded"
-          ></p-dropdown>
+          <p-dropdown [options]="entriesOptions" [(ngModel)]="selectedEntries" placeholder="50"
+            styleClass="border border-gray-300 rounded"></p-dropdown>
           <span class="text-gray-700">Entries</span>
         </div>
       </div>
@@ -48,38 +35,33 @@
         <p-iconfield>
           <p-inputicon styleClass="pi pi-search" />
           <input type="text" pInputText placeholder="Search" />
-      </p-iconfield>
+        </p-iconfield>
       </div>
     </div>
   
-    <p-table
-    [value]="users"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    styleClass="p-datatable-striped p-datatable-sm"
-  >
-    <ng-template pTemplate="header">
-      <tr>
-        <th>USERNAME</th>
-        <th>FIRSTNAME</th>
-        <th>LASTNAME</th>
-        <th>ROLE</th>
-        <th>STATUS</th>
-        <th>STATE</th>
-        <th>LAST UPDATED</th>
-      </tr>
-    </ng-template>
+    <p-table [value]="users" [tableStyle]="{ 'min-width': '100%' }"
+      styleClass="p-datatable-striped p-datatable-sm w-full" class="overflow-x-auto block">
+      <ng-template pTemplate="header">
+        <tr>
+          <th class="whitespace-nowrap">userName</th>
+          <th class="whitespace-nowrap">Full Name</th>
+          <th class="whitespace-nowrap">Role</th>
+          <th class="whitespace-nowrap">status</th>
+          <th class="whitespace-nowrap">State</th>
+          <th class="whitespace-nowrap">Last Updated</th>
+        </tr>
+      </ng-template>
   
-    <ng-template pTemplate="body" let-user>
-      <tr>
-        <td class="text-blue-600">{{ user.username }}</td>
-        <td>{{ user.firstname }}</td>
-        <td>{{ user.lastname }}</td>
-        <td>{{ user.role }}</td>
-        <td class="text-green-400"> {{ user.status }}</td>
-        <td>{{ user.state }}</td>
-        <td>{{ user.lastUpdated }}</td>
-      </tr>
-    </ng-template>
-  </p-table>
+      <ng-template pTemplate="body" let-data>
+        <tr>
+          <td class="text-blue-400 whitespace-nowrap">{{ data.username }}</td>
+          <td class="whitespace-nowrap">{{ data.firstname }} {{ data.lastname }}</td>
+          <td class="whitespace-nowrap">{{ data.role }}</td>
+          <td class="whitespace-nowrap text-green-400">{{ data.status }}</td>
+          <td class="whitespace-nowrap">{{ data.state }}</td>
+          <td class="whitespace-nowrap">{{ data.lastUpdated }}</td>
   
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
